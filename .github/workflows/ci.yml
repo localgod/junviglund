@@ -43,3 +43,10 @@ jobs:
       - name: Run linter 👀
         run: npm run lint
 
+      - name: generate
+        run: npm run generate
+
+      - name: publish
+        run: wrangler publish
+        
+

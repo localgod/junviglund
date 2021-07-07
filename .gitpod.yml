@@ -1,0 +1,22 @@
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    pullRequestsFromForks: true
+    addCheck: false
+    addComment: false
+    addBadge: true
+gitConfig:
+    alias.st: status
+tasks:
+  - init: |
+      npm update -g npm
+      npm i @cloudflare/wrangler -g
+      npm install     
+
+vscode:
+  extensions:
+    - github.vscode-pull-request-github
+    - octref.vetur
+    - bungcip.better-toml

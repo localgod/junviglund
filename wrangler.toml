@@ -1,0 +1,9 @@
+name = "junviglund"
+type = 'webpack'
+account_id = '87e9253f0b808283448e5aed1f051180'
+route = 'junviglund.dk/*'
+zone_id = 'f408ed9154b84774a0a34441eeda37c6'
+usage_model = ''
+workers_dev = true
+target_type = "webpack"
+site = {bucket = "./dist",entry-point = "workers-site"}
