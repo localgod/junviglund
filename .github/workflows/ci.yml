@@ -44,6 +44,8 @@ jobs:
         run: npm run generate
 
       - name: publish
-        run: wrangler publish
+        run: |
+          npm i @cloudflare/wrangler -g
+          wrangler publish
         
 
