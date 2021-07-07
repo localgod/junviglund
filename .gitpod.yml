@@ -11,7 +11,7 @@ gitConfig:
     alias.st: status
 tasks:
   - init: |
-      npm update -g npm
+      npm install -g npm
       npm i @cloudflare/wrangler -g
       npm install     
 
