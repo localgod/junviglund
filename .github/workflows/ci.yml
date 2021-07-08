@@ -38,7 +38,9 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies 👨🏻‍💻
-        run: npm install
+        run: |
+          npm install -g npm
+          npm install
 
       - name: generate
         run: npm run generate
