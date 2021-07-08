@@ -1,7 +1,7 @@
 <template>
   <b-card
     :title="article.title"
-    :img-src="article.img"
+    :img-src="img"
     :img-alt="article.alt"
     img-top
     tag="article"
@@ -14,12 +14,11 @@
     </b-card-text>
     <prev-next :prev="prev" :next="next" />
   </b-card>
-
 </template>
 
 <script>
 export default {
-  async asyncData ({ $content, params }) {
+  async asyncData ({ $cloudinary, $content, params }) {
     const article = await $content('articles', params.slug).fetch()
 
     const [prev, next] = await $content('articles')
@@ -28,23 +27,29 @@ export default {
       .surround(params.slug)
       .fetch()
 
+    const img = $cloudinary.image.url(article.img, {
+      crop: 'scale',
+      width: 200,
+    })
+
     return {
+      img,
       article,
       prev,
-      next
+      next,
     }
   },
   methods: {
-    formatDate (date) {
+    formatDate(date) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' }
       return new Date(date).toLocaleDateString('en', options)
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
 article {
-    background-color:gray;
+  background-color: gray;
 }
 </style>

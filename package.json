@@ -13,6 +13,7 @@
   "dependencies": {
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/cloudinary": "^1.0.3",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.15.1",
@@ -23,7 +24,14 @@
     "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
     "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.12.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
   }
 }
