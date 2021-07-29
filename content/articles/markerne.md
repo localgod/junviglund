@@ -1,7 +1,7 @@
 ---
 title: Markerne
 description: Vores nye marker
-img: sample
+img: IMG_2388_hih9bv
 alt: Marker
 ---
 

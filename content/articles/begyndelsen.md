@@ -1,7 +1,7 @@
 ---
 title: Begyndelsen
 description: Den første post
-img: sample
+img: IMG_2384_agoai3
 alt: Have billede
 ---
 
