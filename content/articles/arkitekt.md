@@ -1,10 +1,10 @@
 ---
-title: arkitekt
-description: arkitet
-img: sample.jpg
-alt: arkitekt
+title: Begyndelsen
+description: Den første post
+img: IMG_2384_agoai3
+alt: Have billede
 ---
 
 # Arkitekten
 
-Vi har valgtat arbejde sammen med arkitekt Trolle Kieler fra Tegnestue Møn.
+Vi har valgt at arbejde sammen med arkitekt Trolle Kieler fra Tegnestue Møn.

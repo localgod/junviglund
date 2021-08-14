@@ -45,9 +45,9 @@ jobs:
       - name: generate
         run: npm run generate
 
-      - name: publish
-        run: |
-          npm i @cloudflare/wrangler -g
-          CF_ACCOUNT_ID=${{ secrets.CF_ACCOUNT_ID }} CF_API_TOKEN=${{ secrets.CF_API_TOKEN }} wrangler publish
+#      - name: publish
+#        run: |
+#          npm i @cloudflare/wrangler -g
+#          CF_ACCOUNT_ID=${{ secrets.CF_ACCOUNT_ID }} CF_API_TOKEN=${{ secrets.CF_API_TOKEN }} wrangler publish
         
 
