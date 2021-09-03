@@ -12,7 +12,6 @@ gitConfig:
 tasks:
   - init: |
       npm install -g npm
-      npm i @cloudflare/wrangler -g
       npm install     
 
 vscode:
