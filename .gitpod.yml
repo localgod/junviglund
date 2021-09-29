@@ -18,4 +18,4 @@ vscode:
   extensions:
     - github.vscode-pull-request-github
     - octref.vetur
-    - bungcip.better-toml
+    - randomfractalsinc.geo-data-viewer

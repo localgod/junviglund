@@ -43,6 +43,7 @@ export default {
     '@nuxt/content',
     '@nuxtjs/cloudinary',
     '@nuxtjs/auth-next',
+    'nuxt-leaflet',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
