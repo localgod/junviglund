@@ -8,7 +8,8 @@
           "stroke-width": 2,
           "stroke-opacity": 1,
           "fill": "#47b359",
-          "fill-opacity": 0.5
+          "fill-opacity": 0.5,
+          "name": "estate"
         },
         "geometry": {
           "type": "Polygon",
