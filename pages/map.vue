@@ -8,8 +8,8 @@
             <b-button-group>
               <template v-for="feature in features">
                 <b-btn
-                  size="sm"
                   v-bind:key="Object.keys(feature)[0]"
+                  size="sm"
                   @click="toggleFeature(Object.keys(feature)[0])"
                   >{{ Object.keys(feature)[0] }}</b-btn
                 >
@@ -19,7 +19,7 @@
           <l-control-layers position="topright"></l-control-layers>
 
           <l-tile-layer
-            name="Sattelit"
+            name="Satelit"
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.jpg"
             :visible="false"
             layer-type="base"
@@ -28,6 +28,7 @@
 
           <l-tile-layer
             name="Kort"
+            layerType="BasemapLayer"
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             :visible="true"
             layer-type="base"
@@ -35,10 +36,10 @@
           ></l-tile-layer>
           <template v-for="feature in features">
             <l-geo-json
-              v-bind:key="feature"
               v-if="feature[Object.keys(feature)[0]].data"
+              v-bind:key="feature"
               v-bind:geojson="feature[Object.keys(feature)[0]].data"
-              v-bind:optionsStyle="{
+              v-bind:options-style="{
                 weight:
                   feature[Object.keys(feature)[0]].data.properties[
                     'stroke-width'
