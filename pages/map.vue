@@ -6,14 +6,14 @@
           <l-ruler :options="rulerOptions" />
           <l-control position="topright">
             <b-button-group>
-            <template v-for="feature in features">
-              <b-btn
-              size="sm"
-                v-bind:key="Object.keys(feature)[0]"
-                @click="toggleFeature(Object.keys(feature)[0])"
-                >{{ Object.keys(feature)[0] }}</b-btn
-              >
-            </template>
+              <template v-for="feature in features">
+                <b-btn
+                  size="sm"
+                  v-bind:key="Object.keys(feature)[0]"
+                  @click="toggleFeature(Object.keys(feature)[0])"
+                  >{{ Object.keys(feature)[0] }}</b-btn
+                >
+              </template>
             </b-button-group>
           </l-control>
           <l-control-layers position="topright"></l-control-layers>
@@ -38,6 +38,24 @@
               v-bind:key="feature"
               v-if="feature[Object.keys(feature)[0]].data"
               v-bind:geojson="feature[Object.keys(feature)[0]].data"
+              v-bind:optionsStyle="{
+                weight:
+                  feature[Object.keys(feature)[0]].data.properties[
+                    'stroke-width'
+                  ],
+                color:
+                  feature[Object.keys(feature)[0]].data.properties['stroke'],
+                opacity:
+                  feature[Object.keys(feature)[0]].data.properties[
+                    'stroke-opacity'
+                  ],
+                fillColor:
+                  feature[Object.keys(feature)[0]].data.properties['fill'],
+                fillOpacity:
+                  feature[Object.keys(feature)[0]].data.properties[
+                    'fill-opacity'
+                  ],
+              }"
             />
           </template>
         </l-map>
