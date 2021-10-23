@@ -3,9 +3,12 @@
     <div id="map-wrap" style="height: 100vh">
       <no-ssr>
         <l-map :zoom="17" :center="[55.4097702, 11.8698327]">
+          <l-ruler :options="rulerOptions" />
           <l-control position="topright">
-            <b-btn @click="showFeature">Vis lag</b-btn>
-            <b-btn @click="hideFeature">Skjul lag</b-btn>
+            <b-btn @click="showFeature('estate')">Vis matrikel</b-btn>
+            <b-btn @click="hideFeature('estate')">Skjul matikel</b-btn>
+            <b-btn @click="showFeature('barn')">Vis lade</b-btn>
+            <b-btn @click="hideFeature('barn')">Skjul lade</b-btn>
           </l-control>
           <l-control-layers position="topright"></l-control-layers>
 
@@ -34,9 +37,14 @@
 </template>
 
 <script>
+import LRuler from "vue2-leaflet-ruler";
 export default {
+    components: {
+    "l-ruler": LRuler,
+  },
   data() {
     return {
+      rulerOptions: {},
       data: undefined,
       estate: { type: 'FeatureCollection', features: [] },
       barn: { type: 'FeatureCollection', features: [] },
@@ -49,20 +57,14 @@ export default {
     async getGeoJson() {
       this.data = await this.$content('geo').fetch()
     },
-    showFeature() {
+    showFeature(name) {
       const e = this.data.features.filter(item => {
-        return item.properties.name === 'estate'
+        return item.properties.name === name
       })
-
-      const b = this.data.features.filter(item => {
-        return item.properties.name === 'barn'
-      })
-      this.barn = b
-      this.estate = e
+      this[name] = e
     },
-    hideFeature() {
-      this.barn = undefined
-      this.estate = undefined
+    hideFeature(name) {
+      this[name] = undefined
     },
   },
 }
