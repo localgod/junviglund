@@ -9,7 +9,7 @@
           "stroke-opacity": 1,
           "fill": "#47b359",
           "fill-opacity": 0.5,
-          "name": "estate"
+          "name": "Matrikel"
         },
         "geometry": {
           "type": "Polygon",
@@ -63,7 +63,7 @@
           "stroke-opacity": 1,
           "fill": "#2871e6",
           "fill-opacity": 0.5,
-          "name": "old building field"
+          "name": "Gamle bygningssæt"
         },
         "geometry": {
           "type": "Polygon",
@@ -101,7 +101,7 @@
           "stroke-opacity": 1,
           "fill": "#555555",
           "fill-opacity": 0.5,
-          "name": "barn"
+          "name": "Lade"
         },
         "geometry": {
           "type": "Polygon",
@@ -147,7 +147,7 @@
           "stroke-opacity": 1,
           "fill": "#555555",
           "fill-opacity": 0.5,
-          "name": "house"
+          "name": "Gamle hovedbygning"
         },
         "geometry": {
           "type": "Polygon",
@@ -185,7 +185,7 @@
           "stroke-opacity": 1,
           "fill": "#555555",
           "fill-opacity": 0.5,
-          "name": "outhouse"
+          "name": "Læskur"
         },
         "geometry": {
           "type": "Polygon",
@@ -223,7 +223,7 @@
           "stroke-opacity": 1,
           "fill": "#1bed0c",
           "fill-opacity": 0.5,
-          "name": "building plot"
+          "name": "Nyt bygningsæt"
         },
         "geometry": {
           "type": "Polygon",
@@ -261,7 +261,7 @@
           "stroke-opacity": 1,
           "fill": "#555555",
           "fill-opacity": 0.5,
-          "name": "pavilion"
+          "name": "Pavilion"
         },
         "geometry": {
           "type": "Polygon",
@@ -307,7 +307,7 @@
           "stroke-opacity": 1,
           "fill": "#555555",
           "fill-opacity": 0.5,
-          "name": "greenhouse"
+          "name": "Drivhus"
         },
         "geometry": {
           "type": "Polygon",
@@ -345,7 +345,7 @@
           "stroke-opacity": 1,
           "fill": "#deed07",
           "fill-opacity": 0.5,
-          "name": "nabozone1"
+          "name": "Nabozone"
         },
         "geometry": {
           "type": "Polygon",
