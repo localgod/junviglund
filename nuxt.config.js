@@ -23,6 +23,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxt/content',
+    '@nuxtjs/sanity/module',
     '@nuxtjs/cloudinary',
     '@nuxtjs/auth-next',
     'nuxt-leaflet',
@@ -51,4 +52,7 @@ export default {
       },
     },
   },
+  sanity: {
+    projectId: 'uy0ayswl'
+  }
 }
