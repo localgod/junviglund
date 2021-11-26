@@ -5,11 +5,12 @@
         <l-map :zoom="17" :center="[55.4097702, 11.8698327]">
           <l-ruler :options="rulerOptions" />
           <l-control position="topright">
-            <b-button-group>
+            <b-button-group vertical>
               <template v-for="feature in features">
                 <b-btn
                   v-bind:key="Object.keys(feature)[0]"
                   size="sm"
+                  class="text-left"
                   @click="toggleFeature(Object.keys(feature)[0])"
                   >{{ Object.keys(feature)[0] }}</b-btn
                 >
