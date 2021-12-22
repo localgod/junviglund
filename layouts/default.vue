@@ -12,8 +12,7 @@ body {
   position: relative;
 }
 .content {
-  background-color: azure;
+  background-color: #433f37;
   padding: 0px;
 }
 </style>
-

@@ -18,7 +18,7 @@ export default {
   css: [],
   plugins: [],
   components: true,
-  buildModules: ['@nuxtjs/eslint-module'],
+  buildModules: [],
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
