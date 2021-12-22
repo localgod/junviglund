@@ -1,23 +1,25 @@
 <template>
-  <b-card :title="post.title" no-body class="overflow-hidden post">
-    <b-row no-gutters>
-      <b-col md="4">
-        <b-card-img
-          :src="urlFor(post.mainImage.asset._ref).url()"
-          alt="Image"
-          class="rounded-0"
-        ></b-card-img>
-      </b-col>
-      <b-col md="8">
-        <b-card-body :title="post.title">
-          <b-card-text>
-            <SanityContent :blocks="post.body" />
-            <b-button class="float-right" size="sm" to="/">Tilbage</b-button>
-          </b-card-text>
-        </b-card-body>
-      </b-col>
-    </b-row>
-  </b-card>
+  <b-container class="post">
+    <h1>{{ post.title }}</h1>
+    <b-img
+      :src="urlFor(post.mainImage.asset._ref).url()"
+      fluid-grow
+      alt="Fluid-grow image"
+    ></b-img>
+
+    <p><SanityContent :blocks="post.body" /></p>
+    <b-container fluid class="" style="overflow: auto">
+      <h2>Billeder</h2>
+      <b-img
+        v-for="image in post.images"
+        :key="image"
+        thumbnail
+        :src="urlFor(image.asset._ref, 200).url()"
+        alt="Image 1"
+      ></b-img>
+    </b-container>
+    <p><b-button class="float-right" size="sm" to="/">Tilbage</b-button></p>
+  </b-container>
 </template>
 
 <script>
@@ -33,10 +35,25 @@ export default {
     })
   },
   methods: {
-    urlFor(source) {
+    urlFor(source, width) {
       const builder = imageUrlBuilder(this.$sanity.config)
-      return builder.image(source).auto('format')
+      if (width) {
+        return builder
+          .image(source)
+          .crop('entropy')
+          .size(width, width)
+          .fit('crop')
+      } else {
+        return builder.image(source).auto('format').maxWidth(width)
+      }
     },
   },
 }
 </script>
+
+<style scoped>
+.post {
+  background-color: #ffffff;
+  position: absolute;
+}
+</style>
