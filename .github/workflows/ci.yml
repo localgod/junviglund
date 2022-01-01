@@ -9,6 +9,9 @@ on:
     branches:
       - main
       - master
+  repository_dispatch:
+      types:
+        - webhook
 
 jobs:
   ci:
