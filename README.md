@@ -1,4 +1,4 @@
-# junviglund
+# Junviglund
 
 ## Build Setup
 
