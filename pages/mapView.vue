@@ -8,7 +8,7 @@
             <b-button-group vertical>
               <template v-for="feature in features">
                 <b-btn
-                  v-bind:key="Object.keys(feature)[0]"
+                  :key="Object.keys(feature)[0]"
                   size="sm"
                   class="text-left"
                   @click="toggleFeature(Object.keys(feature)[0])"
@@ -29,18 +29,17 @@
 
           <l-tile-layer
             name="Kort"
-            layerType="BasemapLayer"
+            layer-type="BasemapLayer"
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             :visible="true"
-            layer-type="base"
             attribution="http://osm.org/copyright"
           ></l-tile-layer>
           <template v-for="feature in features">
             <l-geo-json
               v-if="feature[Object.keys(feature)[0]].data"
-              v-bind:key="feature"
-              v-bind:geojson="feature[Object.keys(feature)[0]].data"
-              v-bind:options-style="{
+              :key="feature"
+              :geojson="feature[Object.keys(feature)[0]].data"
+              :options-style="{
                 weight:
                   feature[Object.keys(feature)[0]].data.properties[
                     'stroke-width'

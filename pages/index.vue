@@ -21,17 +21,20 @@
         >
           <b-row no-gutters>
             <b-col md="4">
-              <b-card-img
-                :src="urlFor(item.mainImage.asset._ref).url()"
-                alt="Image"
-                class="rounded-0"
-              ></b-card-img>
+              <a :href="'/post/' + item.slug.current">
+                <b-card-img
+                  :src="urlFor(item.mainImage.asset._ref).url()"
+                  alt="Image"
+                  class="rounded-0"
+                ></b-card-img>
+              </a>
             </b-col>
             <b-col md="8">
               <b-card-body :title="item.title">
                 <b-card-text>
+                  <div class="meta">Oprettet: {{ item._createdAt | formatDate }}</div>
+                  <div class="meta">Opdateret: {{ item._updatedAt | formatDate }}</div>
                   <SanityContent :blocks="item.body" />
-
                   <b-button
                     class="float-right"
                     size="sm"
@@ -59,6 +62,12 @@ export default {
     const query = groq`{ "posts": *[_type == "post"] }`
     return $sanity.fetch(query)
   },
+  filters: {
+    formatDate: (value) => {
+      const d = new Date(value)
+      return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`
+    },
+  },
   methods: {
     urlFor(source) {
       const builder = imageUrlBuilder(this.$sanity.config)
@@ -71,5 +80,8 @@ export default {
 <style scoped>
 .post {
   margin-top: 10px;
+}
+.meta {
+  text-align: right;
 }
 </style>
