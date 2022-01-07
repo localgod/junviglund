@@ -10,8 +10,9 @@ github:
 gitConfig:
     alias.st: status
 tasks:
-  - init: |
-      npm install -g npm@8.1.4 @sanity/cli
+  - name: setup
+    init: |
+      npm install -g npm@8.3.0 @sanity/cli
       npm install     
 
 vscode:

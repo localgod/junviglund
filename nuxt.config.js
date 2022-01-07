@@ -24,8 +24,6 @@ export default {
     '@nuxtjs/axios',
     '@nuxt/content',
     '@nuxtjs/sanity/module',
-    '@nuxtjs/cloudinary',
-    '@nuxtjs/auth-next',
     'nuxt-leaflet',
   ],
   axios: {},
@@ -35,23 +33,6 @@ export default {
     },
   },
   build: {},
-  cloudinary: {
-    cloudName: 'greenoak',
-  },
-  auth: {
-    redirect: {
-      login: '/login',
-      callback: '/',
-    },
-    strategies: {
-      local: false,
-      auth0: {
-        domain: '',
-        clientId: '',
-        audience: '',
-      },
-    },
-  },
   sanity: {
     projectId: 'uy0ayswl'
   }

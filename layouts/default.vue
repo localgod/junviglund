@@ -7,7 +7,7 @@
 
 <style>
 body {
-  background: url(https://res.cloudinary.com/greenoak/image/upload/c_fit/v1627586623/IMG_2384_agoai3.jpeg);
+  background: url(https://cdn.sanity.io/images/uy0ayswl/production/1c37172af161354db48ea39e813a09f05a6db42d-3024x4032.jpg);
   background-size: cover;
   position: relative;
 }

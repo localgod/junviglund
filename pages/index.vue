@@ -6,16 +6,18 @@
         lead="Byggeprojekt nær Nordrup ved Ringsted"
       >
         <p>Her kan du følge processen.</p>
-        <p>Vi kalder vores drømmeprojekt Junviglund som en sammentrækning af vores børns navne og adressen.</p>
+        <p>
+          Vi kalder vores drømmeprojekt Junviglund som en sammentrækning af
+          vores børns navne og adressen.
+        </p>
       </b-jumbotron>
       <div>
         <b-card
           v-for="item in posts"
-          :key="item"
+          :key="item.id"
           :title="item.title"
           no-body
           class="overflow-hidden post"
-       
         >
           <b-row no-gutters>
             <b-col md="4">
@@ -30,7 +32,12 @@
                 <b-card-text>
                   <SanityContent :blocks="item.body" />
 
-                  <b-button class="float-right" size="sm" :to="`/post/${item.slug.current}`">Læs</b-button>
+                  <b-button
+                    class="float-right"
+                    size="sm"
+                    :to="`/post/${item.slug.current}`"
+                    >Læs</b-button
+                  >
                 </b-card-text>
               </b-card-body>
             </b-col>
@@ -55,7 +62,7 @@ export default {
   methods: {
     urlFor(source) {
       const builder = imageUrlBuilder(this.$sanity.config)
-      return builder.image(source).auto('format');
+      return builder.image(source).auto('format')
     },
   },
 }

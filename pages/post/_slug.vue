@@ -12,7 +12,7 @@
       <h2>Billeder</h2>
       <b-img
         v-for="image in post.images"
-        :key="image"
+        :key="image.id"
         thumbnail
         :src="urlFor(image.asset._ref, 200).url()"
         alt="Image 1"
@@ -30,9 +30,11 @@ export default {
   components: { SanityContent },
   async asyncData({ params, $sanity }) {
     const query = groq`*[_type == "post" && slug.current == "${params.slug}"]`
-    return $sanity.fetch(query).then((response) => {
-      return { post: response[0] }
-    })
+    const response = await $sanity.fetch(query);
+    return { post: response[0] }
+    //  return $sanity.fetch(query).then((response) => {
+    //    return { post: response[0] }
+    //  })
   },
   methods: {
     urlFor(source, width) {
