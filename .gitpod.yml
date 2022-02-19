@@ -12,7 +12,7 @@ gitConfig:
 tasks:
   - name: setup
     init: |
-      npm install -g npm@8.3.0 @sanity/cli
+      npm install -g npm@8.5.1 @sanity/cli
       npm install     
 
 vscode:

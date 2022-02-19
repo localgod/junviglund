@@ -20,27 +20,23 @@
           class="overflow-hidden post"
         >
           <b-row no-gutters>
-            <b-col md="4">
+            <b-col md="2">
               <a :href="'/post/' + item.slug.current">
                 <b-card-img
-                  :src="urlFor(item.mainImage.asset._ref).url()"
-                  alt="Image"
-                  class="rounded-0"
+                  :src="urlFor(item.mainImage.asset._ref, 150).url()"
+                  alt="Læs mere"
+                  class=""
                 ></b-card-img>
               </a>
             </b-col>
-            <b-col md="8">
+            <b-col md="10">
               <b-card-body :title="item.title">
                 <b-card-text>
-                  <div class="meta">Oprettet: {{ item._createdAt | formatDate }}</div>
-                  <div class="meta">Opdateret: {{ item._updatedAt | formatDate }}</div>
-                  <SanityContent :blocks="item.body" />
-                  <b-button
-                    class="float-right"
-                    size="sm"
-                    :to="`/post/${item.slug.current}`"
-                    >Læs</b-button
-                  >
+                  <div class="meta">
+                    <div>Oprettet: {{ item._createdAt | formatDate }}</div>
+                    <div>Opdateret: {{ item._updatedAt | formatDate }}</div>
+                  </div>
+                  <p>{{ small(item) }}</p>
                 </b-card-text>
               </b-card-body>
             </b-col>
@@ -59,19 +55,30 @@ import { SanityContent } from '@nuxtjs/sanity/dist/components/sanity-content'
 export default {
   components: { SanityContent },
   asyncData({ $sanity }) {
-    const query = groq`{ "posts": *[_type == "post"] }`
+    const query = groq`{ "posts": *[_type == "post"] | order(_createdAt asc)}`
     return $sanity.fetch(query)
   },
   filters: {
     formatDate: (value) => {
       const d = new Date(value)
-      return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`
+      return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
     },
   },
   methods: {
-    urlFor(source) {
+    small(item) {
+      return item.body[0].children[0].text
+    },
+    urlFor(source, width) {
       const builder = imageUrlBuilder(this.$sanity.config)
-      return builder.image(source).auto('format')
+      if (width) {
+        return builder
+          .image(source)
+          .crop('entropy')
+          .size(width, width)
+          .fit('crop')
+      } else {
+        return builder.image(source).auto('format').maxWidth(width)
+      }
     },
   },
 }
@@ -82,6 +89,10 @@ export default {
   margin-top: 10px;
 }
 .meta {
+  color: gray;
+  position: absolute;
+  right: 2px;
+  top: 0px;
   text-align: right;
 }
 </style>
