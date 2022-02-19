@@ -55,7 +55,7 @@ import { SanityContent } from '@nuxtjs/sanity/dist/components/sanity-content'
 export default {
   components: { SanityContent },
   asyncData({ $sanity }) {
-    const query = groq`{ "posts": *[_type == "post"] | order(_createdAt asc)}`
+    const query = groq`{ "posts": *[_type == "post"] | order(_createdAt desc)}`
     return $sanity.fetch(query)
   },
   filters: {
