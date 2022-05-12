@@ -3,7 +3,6 @@
     <div id="map-wrap" style="height: 100vh">
       <client-only>
         <l-map :zoom="17" :center="[55.4097702, 11.8698327]">
-          <l-ruler :options="rulerOptions" />
           <l-control position="topright">
             <b-button-group vertical>
               <template v-for="feature in features">
@@ -66,14 +65,9 @@
 </template>
 
 <script>
-import LRuler from 'vue2-leaflet-ruler'
 export default {
-  components: {
-    'l-ruler': LRuler,
-  },
   data() {
     return {
-      rulerOptions: {},
       data: undefined,
       features: [],
     }
