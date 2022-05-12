@@ -32,9 +32,6 @@ export default {
     const query = groq`*[_type == "post" && slug.current == "${params.slug}"]`
     const response = await $sanity.fetch(query);
     return { post: response[0] }
-    //  return $sanity.fetch(query).then((response) => {
-    //    return { post: response[0] }
-    //  })
   },
   methods: {
     urlFor(source, width) {

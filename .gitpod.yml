@@ -12,11 +12,10 @@ gitConfig:
 tasks:
   - name: setup
     init: |
-      npm install -g npm@8.5.1 @sanity/cli
+      npm install -g npm@8.10.0 @sanity/cli
       npm install     
 
 vscode:
   extensions:
-    - github.vscode-pull-request-github
     - octref.vetur
     - randomfractalsinc.geo-data-viewer

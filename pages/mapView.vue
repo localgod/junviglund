@@ -93,10 +93,7 @@ export default {
     },
     toggleFeature(name) {
       const found = this.features.findIndex((element) => {
-        if (Object.keys(element)[0] === name) {
-          return true
-        }
-        return false
+        return Object.keys(element)[0] === name;
       })
       if (found !== -1) {
         if (this.features[found][name].data === null) {
@@ -112,10 +109,7 @@ export default {
       })[0]
 
       const found = this.features.findIndex((element) => {
-        if (Object.keys(element)[0] === name) {
-          return true
-        }
-        return false
+        return Object.keys(element)[0] === name;
       })
       if (found !== -1) {
         this.features[found][name].data = e
@@ -123,10 +117,7 @@ export default {
     },
     hideFeature(name) {
       const found = this.features.findIndex((element) => {
-        if (Object.keys(element)[0] === name) {
-          return true
-        }
-        return false
+        return Object.keys(element)[0] === name;
       })
       if (found !== -1) {
         this.features[found][name].data = null
