@@ -12,10 +12,10 @@ gitConfig:
 tasks:
   - name: setup
     init: |
-      npm install -g npm@8.10.0 @sanity/cli
+      npm install --location=global npm@8.12.2 @sanity/cli
       npm install     
 
 vscode:
   extensions:
-    - octref.vetur
     - randomfractalsinc.geo-data-viewer
+    - johnsoncodehk.volar
