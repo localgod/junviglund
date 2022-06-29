@@ -1,6 +1,7 @@
 <template>
-  <b-container class="post">
-    <h1>{{ post.title }}</h1>
+  <b-container v-if="post != undefined" class="post">
+    <h1>{{ post.title}}</h1>
+
     <b-img :src="urlFor(post.mainImage.asset._ref).url()" fluid-grow alt="Fluid-grow image"></b-img>
 
     <p>
@@ -36,6 +37,7 @@ export default {
   async asyncData({ params, $sanity }) {
     const query = groq`*[_type == "post" && slug.current == "${params.slug}"]`
     const response = await $sanity.fetch(query);
+
     return { post: response[0] }
   },
   methods: {
