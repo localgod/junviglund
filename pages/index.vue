@@ -50,20 +50,19 @@
 <script>
 import imageUrlBuilder from '@sanity/image-url'
 import { groq } from '@nuxtjs/sanity'
-import { SanityContent } from '@nuxtjs/sanity/dist/components/sanity-content'
 
 export default {
-  components: { SanityContent },
-  asyncData({ $sanity }) {
-    const query = groq`{ "posts": *[_type == "post"] | order(_createdAt desc)}`
-    return $sanity.fetch(query)
-  },
   filters: {
     formatDate: (value) => {
       const d = new Date(value)
       return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
     },
   },
+  asyncData({ $sanity }) {
+    const query = groq`{ "posts": *[_type == "post"] | order(_createdAt desc)}`
+    return $sanity.fetch(query)
+  },
+
   methods: {
     small(item) {
       return item.body[0].children[0].text

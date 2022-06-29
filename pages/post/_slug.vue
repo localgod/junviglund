@@ -1,24 +1,29 @@
 <template>
   <b-container class="post">
     <h1>{{ post.title }}</h1>
-    <b-img
-      :src="urlFor(post.mainImage.asset._ref).url()"
-      fluid-grow
-      alt="Fluid-grow image"
-    ></b-img>
+    <b-img :src="urlFor(post.mainImage.asset._ref).url()" fluid-grow alt="Fluid-grow image"></b-img>
 
-    <p><SanityContent :blocks="post.body" /></p>
-    <b-container fluid class="" style="overflow: auto">
+    <p>
+      <SanityContent :blocks="post.body" />
+    </p>
+    <b-container fluid class style="overflow: auto">
       <h2>Billeder</h2>
       <b-img
         v-for="image in post.images"
-        :key="image.id"
+        :key="image._key"
         thumbnail
         :src="urlFor(image.asset._ref, 200).url()"
-        alt="Image 1"
+        :alt="image._key"
+        :title="image._key"
+        @click="$bvModal.show(image._key)"
       ></b-img>
     </b-container>
-    <p><b-button class="float-right" size="sm" to="/">Tilbage</b-button></p>
+    <p>
+      <b-button class="float-right" size="sm" to="/">Tilbage</b-button>
+    </p>
+    <b-modal hide-footer v-for="image in post.images" :id="image._key" :key="image._key">
+      <b-img :src="urlFor(image.asset._ref, 600).url()" fluid-grow alt="Responsive image"></b-img>
+    </b-modal>
   </b-container>
 </template>
 
