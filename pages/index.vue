@@ -2,7 +2,7 @@
   <b-container>
     <div>
       <b-jumbotron
-        header="Junviglund"
+        header="Junviglund - It's not a dream, it's a plan."
         lead="Byggeprojekt nær Nordrup ved Ringsted"
       >
         <p>Her kan du følge processen.</p>
