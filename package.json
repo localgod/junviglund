@@ -16,7 +16,7 @@
     "@nuxtjs/sanity": "^0.10.0",
     "@sanity/client": "^3.3.2",
     "@sanity/image-url": "^1.0.1",
-    "bootstrap": "^4.6.1",
+    "bootstrap": "^5.2.0",
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.23.3",
     "nuxt": "^2.15.8",
