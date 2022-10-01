@@ -22,7 +22,7 @@
     <p>
       <b-button class="float-right" size="sm" to="/">Tilbage</b-button>
     </p>
-    <b-modal hide-footer v-for="image in post.images" :id="image._key" :key="image._key">
+    <b-modal v-for="image in post.images" :id="image._key" :key="image._key" hide-footer>
       <b-img :src="urlFor(image.asset._ref, 600).url()" fluid-grow alt="Responsive image"></b-img>
     </b-modal>
   </b-container>
