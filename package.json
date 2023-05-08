@@ -18,7 +18,7 @@
     "@sanity/image-url": "^1.0.2",
     "bootstrap": "^4.6.1",
     "bootstrap-vue": "^2.23.1",
-    "core-js": "^3.29.1",
+    "core-js": "^3.30.2",
     "nuxt": "^2.15.8",
     "nuxt-leaflet": "0.0.27"
   },
