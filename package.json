@@ -23,7 +23,7 @@
     "nuxt-leaflet": "0.0.27"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.19.1",
+    "@babel/eslint-parser": "^7.21.8",
     "@nuxtjs/eslint-config": "^12.0.0",
     "@nuxtjs/eslint-module": "^4.0.2",
     "eslint": "^8.36.0",
