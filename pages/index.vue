@@ -1,10 +1,7 @@
 <template>
   <b-container>
     <div>
-      <b-jumbotron
-        header="Junviglund - It's not a dream, it's a plan."
-        lead="Byggeprojekt nær Nordrup ved Ringsted"
-      >
+      <b-jumbotron header="Junviglund - It's not a dream, it's a plan." lead="Byggeprojekt nær Nordrup ved Ringsted">
         <p>Her kan du følge processen.</p>
         <p>
           Vi kalder vores drømmeprojekt Junviglund som en sammentrækning af
@@ -12,21 +9,11 @@
         </p>
       </b-jumbotron>
       <div>
-        <b-card
-          v-for="item in posts"
-          :key="item.id"
-          :title="item.title"
-          no-body
-          class="overflow-hidden post"
-        >
+        <b-card v-for="item in posts" :key="item.id" :title="item.title" no-body class="overflow-hidden post">
           <b-row no-gutters>
             <b-col md="2">
               <a :href="'/post/' + item.slug.current">
-                <b-card-img
-                  :src="urlFor(item.mainImage.asset._ref, 150).url()"
-                  alt="Læs mere"
-                  class=""
-                ></b-card-img>
+                <b-card-img :src="urlFor(item.mainImage?.asset._ref, 150)" alt="Læs mere" class=""></b-card-img>
               </a>
             </b-col>
             <b-col md="10">
@@ -65,19 +52,29 @@ export default {
 
   methods: {
     small(item) {
-      return item.body[0].children[0].text
+      if (item.length > 0) {
+        return item.body[0].children[0].text
+      }
+
     },
     urlFor(source, width) {
-      const builder = imageUrlBuilder(this.$sanity.config)
-      if (width) {
-        return builder
-          .image(source)
-          .crop('entropy')
-          .size(width, width)
-          .fit('crop')
+      if (source) {
+        const builder = imageUrlBuilder(this.$sanity.config)
+
+        if (width) {
+          return builder
+            .image(source)
+            .crop('entropy')
+            .size(width, width)
+            .fit('crop')
+        } else {
+          return builder.image(source).auto('format').maxWidth(width).url()
+        }
       } else {
-        return builder.image(source).auto('format').maxWidth(width)
+        return 'https://via.placeholder.com/150'
       }
+
+
     },
   },
 }
@@ -87,6 +84,7 @@ export default {
 .post {
   margin-top: 10px;
 }
+
 .meta {
   color: gray;
   position: absolute;

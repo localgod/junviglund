@@ -13,9 +13,11 @@ tasks:
   - before: |
       npm install --location=global npm@latest @sanity/cli@latest
       npm install    
-  - init: |
+  - name: Run dev env
+    env:
+      NODE_OPTIONS: --openssl-legacy-provider
+    init: |
       npm run dev
-
 vscode:
   extensions:
     - randomfractalsinc.geo-data-viewer
