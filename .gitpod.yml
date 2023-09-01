@@ -11,7 +11,7 @@ gitConfig:
     alias.st: status
 tasks:
   - before: |
-      npm install --location=global npm@latest @sanity/cli@latest
+      npm install --location=global npm@latest @sanity/cli@latest typescript@latest
       npm install    
   - name: Run dev env
     env:
@@ -21,4 +21,4 @@ tasks:
 vscode:
   extensions:
     - randomfractalsinc.geo-data-viewer
-    - johnsoncodehk.volar
+    - Vue.volar
