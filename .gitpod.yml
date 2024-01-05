@@ -1,21 +1,17 @@
-github:
-  prebuilds:
-    master: true
-    branches: true
-    pullRequests: true
-    pullRequestsFromForks: true
-    addCheck: false
-    addComment: false
-    addBadge: true
 gitConfig:
     alias.st: status
 tasks:
-  - before: |
-      npm install --location=global npm@latest @sanity/cli@latest typescript@latest
-      npm install    
-  - name: Run dev env
+  - name: Setup fnm (Fast node manager)
+    before: curl -fsSL https://fnm.vercel.app/install | bash
+    init: |
+      source /home/gitpod/.bashrc
+      fnm install --latest
+  - name: Setup dependencies
     env:
       NODE_OPTIONS: --openssl-legacy-provider
+    before: |
+      npm install --location=global npm@latest @sanity/cli@latest typescript@latest
+      npm install    
     init: |
       npm run dev
 vscode:

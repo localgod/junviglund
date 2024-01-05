@@ -1,19 +1,23 @@
 <template>
     <div class="card">
-        <img v-if="post?.mainImage" :src="builder.image(post.mainImage).url()" class="card-img-top" alt="...">
+        <img v-if="post?.mainImage" :src="builder.image(post.mainImage).width(1200).url()" class="" alt="...">
         <div class="card-body">
 
             <h5 class="card-title">{{ post?.title }}</h5>
             <p class="card-text">
                 <PortableText :value="post?.body || []" />
             </p>
-            <div class="row">
-            <div v-if="post?.images" class="col-sm-4">
-                <img  v-for="img in post.images" :src="builder.image(img).url()" class="card-img-top" alt="...">
+            <div v-if="post?.images" class="row row-cols-1 row-cols-md-6 g-4">
+                <div v-for="img in post.images" class="col">
+                    <div class="card">
+                        <img :src="builder.image(img).width(190).height(190).fit('clip').url()" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Billede</h5>
+                            <p class="card-text">...more</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-   
-
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
