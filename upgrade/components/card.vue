@@ -1,6 +1,8 @@
 <template>
     <div class="card">
+        
         <img v-if="post?.mainImage" :src="builder.image(post.mainImage).width(1200).url()" class="" alt="...">
+        
         <div class="card-body">
 
             <h5 class="card-title">{{ post?.title }}</h5>
@@ -9,16 +11,11 @@
             </p>
             <div v-if="post?.images" class="row row-cols-1 row-cols-md-6 g-4">
                 <div v-for="img in post.images" class="col">
-                    <div class="card">
+                    <div class="card">                 
                         <img :src="builder.image(img).width(190).height(190).fit('clip').url()" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Billede</h5>
-                            <p class="card-text">...more</p>
-                        </div>
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
 </template>
@@ -26,10 +23,12 @@
 <script setup lang="ts">
 import { PortableText } from '@portabletext/vue';
 import imageUrlBuilder from '@sanity/image-url'
+const runtimeConfig = useRuntimeConfig()
+
 
 const builder = imageUrlBuilder({
-    projectId: 'uy0ayswl',
-    dataset: 'production',
+    projectId: runtimeConfig.public.sanityProjectId,
+    dataset: runtimeConfig.public.sanityDataset,
 })
 
 
