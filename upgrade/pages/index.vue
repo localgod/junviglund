@@ -2,7 +2,6 @@
   
   <div class="container">
     <h1>Junviglund</h1>
-    <p><a href="./mapView">Map</a></p>
     <div class="row">
       <div v-for="p in posts" class="col-sm-12">
         <Card :post="p"></Card>

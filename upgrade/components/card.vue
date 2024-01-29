@@ -15,16 +15,15 @@
                         <img :src="builder.image(img).width(190).height(190).fit('clip').url()" class="card-img-top"
                             alt="..." data-bs-toggle="modal" :data-bs-target="'#' + img._key">
                     </div>
-                    <div class="modal modal-xl fade" :id="img._key" tabindex="-1" aria-labelledby="Picture"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
+                    <div class="modal fade" :id="img._key" tabindex="-1" aria-labelledby="Picture" aria-hidden="true">
+                        <div class="modal-dialog modal-fullscreen">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <img :src="builder.image(img).width(1100).fit('scale').url()">
+                                    <img :src="builder.image(img).width(1200).fit('scale').url()" style="max-width: 100%;">
                                 </div>
                             </div>
                         </div>
