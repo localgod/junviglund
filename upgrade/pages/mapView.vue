@@ -2,6 +2,7 @@
   <div class="container">
     <div style="height:100vh; width:100vw">
       <!-- https://github.com/Gugustinette/Nuxt-Leaflet -->
+      <!-- https://api.dataforsyningen.dk/jordstykker?format=geojson&ejerlavkode=211255&matrikelnr=17a -->
       <LMap ref="map" :zoom="17" :center="[55.4097702, 11.8698327]">
         <LTileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
