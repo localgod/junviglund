@@ -20,6 +20,6 @@ class CMS {
 }
 
 export default defineEventHandler(async () => {
-    const gitHubRepositories = new CMS();
-    return await gitHubRepositories.getPost();
+    const cms = new CMS();
+    return await cms.getPost();
 });
