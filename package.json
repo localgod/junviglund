@@ -1,10 +1,11 @@
 {
-  "name": "nuxt-app",
+  "name": "junviglund-cms",
   "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "generate-prod": "SANITY_DATASET=production nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lintfix": "eslint --ignore-path .gitignore --ext .ts,.js,.vue . --fix"
