@@ -1,136 +1,67 @@
 <template>
-  <b-container>
-    <div id="map-wrap" style="height: 100vh">
-      <client-only>
-        <l-map :zoom="17" :center="[55.4097702, 11.8698327]">
-          <l-control position="topright">
-            <b-button-group vertical>
-              <template v-for="feature in features">
-                <b-btn
-                  :key="Object.keys(feature)[0]"
-                  size="sm"
-                  class="text-left"
-                  @click="toggleFeature(Object.keys(feature)[0])"
-                  >{{ Object.keys(feature)[0] }}</b-btn
-                >
-              </template>
-            </b-button-group>
-          </l-control>
-          <l-control-layers position="topright"></l-control-layers>
-
-          <l-tile-layer
-            name="Satelit"
-            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.jpg"
-            :visible="false"
-            layer-type="base"
-            attribution="World Imagery"
-          ></l-tile-layer>
-
-          <l-tile-layer
-            name="Kort"
-            layer-type="BasemapLayer"
-            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-            :visible="true"
-            attribution="http://osm.org/copyright"
-          ></l-tile-layer>
-          <template v-for="feature in features">
-            <l-geo-json
-              v-if="feature[Object.keys(feature)[0]].data"
-              :key="feature"
-              :geojson="feature[Object.keys(feature)[0]].data"
-              :options-style="{
-                weight:
-                  feature[Object.keys(feature)[0]].data.properties[
-                    'stroke-width'
-                  ],
-                color:
-                  feature[Object.keys(feature)[0]].data.properties['stroke'],
-                opacity:
-                  feature[Object.keys(feature)[0]].data.properties[
-                    'stroke-opacity'
-                  ],
-                fillColor:
-                  feature[Object.keys(feature)[0]].data.properties['fill'],
-                fillOpacity:
-                  feature[Object.keys(feature)[0]].data.properties[
-                    'fill-opacity'
-                  ],
-              }"
-            />
-          </template>
-        </l-map>
-      </client-only>
+  <div class="container">
+    <div style="height:80vh; width:80vw">
+      <!-- https://github.com/Gugustinette/Nuxt-Leaflet -->
+      <LMap ref="map" :zoom="zoom" :center="center">
+        <LTileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
+          layer-type="base"
+          name="OpenStreetMap"
+        />
+        <LGeoJson :geojson="combined" :options-style="geoStyler" :options="{ onEachFeature: onEachFeature }" />
+      </LMap>
     </div>
-  </b-container>
+  </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      data: undefined,
-      features: [],
+<script setup lang="ts">
+import type { PointExpression, StyleFunction } from 'leaflet'
+const zoom = 17
+const center: PointExpression = [55.4097702, 11.8698327]
+
+const matrikel1 = (await useFetch(() => '/api/dataforsyningen/jordstykker?ejerlavkode=211255&matrikelnr=16d')).data.value as GeoJSON.FeatureCollection
+const matrikel2 = (await useFetch(() => '/api/dataforsyningen/jordstykker?ejerlavkode=211255&matrikelnr=17a')).data.value as GeoJSON.FeatureCollection
+const planting = await queryContent('/planting').findOne() as unknown as GeoJSON.FeatureCollection
+const buildings = await queryContent('/buildings').findOne() as unknown as GeoJSON.FeatureCollection
+const planning = await queryContent('/planning').findOne() as unknown as GeoJSON.FeatureCollection
+
+const combined: GeoJSON.FeatureCollection = {
+  type: 'FeatureCollection',
+  features: [
+    ...matrikel1.features,
+    ...matrikel2.features,
+    ...planting.features,
+    ...buildings.features,
+    ...planning.features
+  ]
+}
+
+const onEachFeature = (feature: GeoJSON.Feature, layer: L.Layer) => {
+  if (feature?.properties?.name) {
+    const name = feature?.properties?.name ?? 'unknown'
+    const hektar = feature?.properties?.hektar ?? 'unknown'
+    const sorts = feature?.properties?.sorts ?? 'unknown'
+    const l: string[] = []
+    if (Array.isArray(sorts)) {
+      sorts.forEach((sort: string) => {
+        l.push(`<li>${sort}</li>`)
+      })
+      layer.bindPopup(`<h6>${name}</h6> <p>(${hektar} hektar)</p> <ul>${l.join('')}</ul>`)
+    } else {
+      layer.bindPopup(`<h6>${name}</h6>`)
     }
-  },
-  mounted() {
-    this.getGeoJson().then(() => {
-      this.getFeatures()
-    })
-  },
-  methods: {
-    async getGeoJson() {
-      this.data = await this.$content('geo').fetch()
-    },
-    getFeatures() {
-      const features = []
-      this.data.features.forEach((item) => {
-        const feature = {}
-        feature[item.properties.name] = { data: null }
-
-        features.push(feature)
-      })
-      this.features = features
-    },
-    toggleFeature(name) {
-      const found = this.features.findIndex((element) => {
-        return Object.keys(element)[0] === name;
-      })
-      if (found !== -1) {
-        if (this.features[found][name].data === null) {
-          this.showFeature(name)
-        } else {
-          this.hideFeature(name)
-        }
-      }
-    },
-    showFeature(name) {
-      const e = this.data.features.filter((item) => {
-        return item.properties.name === name
-      })[0]
-
-      const found = this.features.findIndex((element) => {
-        return Object.keys(element)[0] === name;
-      })
-      if (found !== -1) {
-        this.features[found][name].data = e
-      }
-    },
-    hideFeature(name) {
-      const found = this.features.findIndex((element) => {
-        return Object.keys(element)[0] === name;
-      })
-      if (found !== -1) {
-        this.features[found][name].data = null
-      }
-    },
-  },
+  }
 }
+
+const geoStyler: StyleFunction = (feature) => {
+  return {
+    color: feature?.properties?.stroke ?? '#cccccc',
+    weight: feature?.properties?.['stroke-width'] ?? 1,
+    opacity: feature?.properties?.['stroke-opacity'] ?? 1,
+    fillOpacity: feature?.properties?.['fill-opacity'] ?? 0.5,
+    fillColor: feature?.properties?.fill ?? '#cccccc'
+  }
+}
+
 </script>
-
-<style scoped>
-.main {
-  background-color: azure;
-  opacity: 0.9;
-  text-align: center;
-}
-</style>

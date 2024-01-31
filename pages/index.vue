@@ -1,95 +1,66 @@
 <template>
-  <b-container>
-    <div>
-      <b-jumbotron header="Junviglund - It's not a dream, it's a plan." lead="Byggeprojekt nær Nordrup ved Ringsted">
-        <p>Her kan du følge processen.</p>
-        <p>
-          Vi kalder vores drømmeprojekt Junviglund som en sammentrækning af
-          vores børns navne og adressen.
-        </p>
-      </b-jumbotron>
-      <div>
-        <b-card v-for="item in posts" :key="item.id" :title="item.title" no-body class="overflow-hidden post">
-          <b-row no-gutters>
-            <b-col md="2">
-              <a :href="'/post/' + item.slug.current">
-                <b-card-img :src="urlFor(item.mainImage?.asset._ref, 150)" alt="Læs mere" class=""></b-card-img>
-              </a>
-            </b-col>
-            <b-col md="10">
-              <b-card-body :title="item.title">
-                <b-card-text>
-                  <div class="meta">
-                    <div>Oprettet: {{ item._createdAt | formatDate }}</div>
-                    <div>Opdateret: {{ item._updatedAt | formatDate }}</div>
-                  </div>
-                  <p>{{ small(item) }}</p>
-                </b-card-text>
-              </b-card-body>
-            </b-col>
-          </b-row>
-        </b-card>
+  <div class="container">
+    <h1>Junviglund</h1>
+    <div class="row">
+      <div v-for="p in posts" :key="p._id" class="col-sm-12">
+        <BlogPost :post="p" />
       </div>
     </div>
-  </b-container>
+  </div>
 </template>
 
-<script>
-import imageUrlBuilder from '@sanity/image-url'
-import { groq } from '@nuxtjs/sanity'
+<script setup lang="ts">
 
-export default {
-  filters: {
-    formatDate: (value) => {
-      const d = new Date(value)
-      return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
-    },
-  },
-  asyncData({ $sanity }) {
-    const query = groq`{ "posts": *[_type == "post"] | order(_createdAt desc)}`
-    return $sanity.fetch(query)
-  },
+type Post = {
+  author: {
+    _ref: string;
+    _type: string;
+  };
+  images: {
+    _type: string;
+    _key: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    }
+  }[];
+  categories: {
+    _ref: string;
+    _type: string;
+    _key: string;
+  }[];
+  _updatedAt: string;
+  slug: {
+    current: string;
+    _type: string;
+  };
+  title: string;
+  mainImage: {
+    _type: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+  _createdAt: string;
+  _rev: string;
+  _type: string;
+  _id: string;
+  body: {
+    _type: string;
+    style: string;
+    _key: string;
+    markDefs: any[]; // You can define a type for markDefs if needed
+    children: {
+      _key: string;
+      _type: string;
+      marks: any[]; // You can define a type for marks if needed
+      text: string;
+    }[];
+  }[];
+};
 
-  methods: {
-    small(item) {
-      if (item.length > 0) {
-        return item.body[0].children[0].text
-      }
-
-    },
-    urlFor(source, width) {
-      if (source) {
-        const builder = imageUrlBuilder(this.$sanity.config)
-
-        if (width) {
-          return builder
-            .image(source)
-            .crop('entropy')
-            .size(width, width)
-            .fit('crop')
-        } else {
-          return builder.image(source).auto('format').maxWidth(width).url()
-        }
-      } else {
-        return 'https://via.placeholder.com/150'
-      }
-
-
-    },
-  },
-}
+const posts: Post[] = (await useFetch(() => '/api/post')).data.value
 </script>
 
-<style scoped>
-.post {
-  margin-top: 10px;
-}
-
-.meta {
-  color: gray;
-  position: absolute;
-  right: 2px;
-  top: 0px;
-  text-align: right;
-}
-</style>
+<style lang="css" scoped></style>
