@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue .",
-    "lintfix": "eslint --ignore-path .gitignore --ext .ts,.js,.vue . --fix"
+    "lintfix": "eslint --ignore-path .gitignore --ext .ts,.js,.vue . --fix",
+    "mdlint": "markdownlint '**/*.md' --ignore node_modules --disable MD033 MD013 MD041"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231218.0 ",

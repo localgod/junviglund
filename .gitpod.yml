@@ -1,5 +1,5 @@
 gitConfig:
-    alias.st: status
+  alias.st: status
 tasks:
   - name: Setup fnm (Fast node manager)
     before: curl -fsSL https://fnm.vercel.app/install | bash
@@ -10,8 +10,8 @@ tasks:
     env:
       NODE_OPTIONS: --openssl-legacy-provider
     before: |
-      npm install --location=global npm@latest typescript@latest
-      npm install    
+      npm install --location=global npm@latest typescript@latest markdownlint-cli@latest
+      npm install
     init: |
       npm run dev
 vscode:

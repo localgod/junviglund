@@ -12,36 +12,14 @@ on:
       - webhook
 
 jobs:
-  ci:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [20]
-
+  lint:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@master
-
-      - name: Setup node env 🏗
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-          check-latest: true
-
-      - name: Cache node_modules 📦
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies 👨🏻‍💻
+      - uses: actions/checkout@v4
+      - name: Install dependencies
         run: |
-          npm install -g npm@latest
-          npm install
-
-      - name: lint
-        run: npm run lint
+          npm ci
+      - name: Lint
+        run: |
+          npm run lint
+          npm run mdlint
