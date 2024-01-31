@@ -5,7 +5,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "generate-prod": "SANITY_DATASET=production nuxt generate",
+    "generate-prod": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue .",

@@ -1,63 +1,49 @@
-# Nuxt 3 Minimal Starter
+# Junviglund frontend
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Overview
 
-## Setup
+This repository provided a [frontend](https://junviglund.dk/) designed to integrate seamlessly with Sanity for structured content management. Leveraging the power of Nuxt.js, it focuses on content-driven web development with additional emphasis on geospatial data through the use of GeoJSON stored via `@nuxt/content`. The site employs Leaflet for the interactive display of map information.
 
-Make sure to install the dependencies:
+## Key Features
 
-```bash
-# npm
-npm install
+### 1. Nuxt.js Framework
 
-# pnpm
-pnpm install
+Built on [Nuxt.js](https://nuxt.com/), this project benefits from its progressive framework, offering features like server-side rendering, static site generation, and a flexible plugin system.
 
-# yarn
-yarn install
-```
+### 2. Content Management with Sanity
 
-## Development Server
+The CMS functionality is deeply integrated with [Sanity](https://www.sanity.io/), utilizing `@sanity/client` for seamless and structured content management.
 
-Start the development server on `http://localhost:3000`:
+### 3. GeoJSON Storage
 
-```bash
-# npm
-npm run dev
+Structured GeoJSON data is stored using `@nuxt/content`, enabling efficient handling and rendering of geospatial information.
 
-# pnpm
-pnpm run dev
+### 4. Interactive Maps with Leaflet
 
-# yarn
-yarn dev
-```
+Map information is displayed interactively using [Leaflet](https://leafletjs.com/), providing a dynamic and user-friendly mapping experience.
 
-## Production
+### 5. Development Tools
 
-Build the application for production:
+Development tools include `@nuxt/devtools` for enhanced development experience and various TypeScript dependencies (`@types/node`, `@typescript-eslint/eslint-plugin`, `@typescript-eslint/parser`) for static typing.
 
-```bash
-# npm
-npm run build
+### 6. Deployment with Cloudflare Pages
 
-# pnpm
-pnpm run build
+The application is hosted and deployed using [Cloudflare Pages](https://pages.cloudflare.com/). Automatic deployments occur in the following scenarios:
 
-# yarn
-yarn build
-```
+- **Pull Request to Test Site:** Any pull request triggers an automatic deployment to the test site, allowing for previewing changes before merging.
+- **Merge to Master for Production Site:** Upon merging changes into the master branch, an automatic deployment to the production site takes place, ensuring a seamless transition of updates to the live environment.
 
-Locally preview production build:
+## Scripts
 
-```bash
-# npm
-npm run preview
+The project provides essential scripts for development, building, and linting. Key scripts include:
 
-# pnpm
-pnpm run preview
+- `dev`: Run the project in development mode.
+- `build`: Build the project for production.
+- `generate`: Generate static files.
+- `lint`: Lint the code using ESLint.
 
-# yarn
-yarn preview
-```
+## Instructions
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+1. Install dependencies: `npm install`
+2. Run the development server: `npm run dev`
+3. Build for production: `npm run build`
