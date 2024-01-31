@@ -1,10 +1,9 @@
 <template>
-  
   <div class="container">
     <h1>Junviglund</h1>
     <div class="row">
-      <div v-for="p in posts" v-bind:key="p._id" class="col-sm-12">
-        <Card :post="p"></Card>
+      <div v-for="p in posts" :key="p._id" class="col-sm-12">
+        <BlogPost :post="p" />
       </div>
     </div>
   </div>

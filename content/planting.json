@@ -4,20 +4,14 @@
         {
             "type": "Feature",
             "properties": {
-                "SID": 1767089549,
-                "ACTIVITY_TYPE": "N NYK P",
-                "INFO1": 2022,
-                "INFO2": "",
-                "Area": 0,
-                "Length": 0,
-                "x": 0,
-                "y": 0,
+                "hektar": 0.520000,
                 "stroke": "#555555",
                 "stroke-width": 2,
                 "stroke-opacity": 1,
                 "fill": "#367c12",
                 "fill-opacity": 0.5,
-                "Name": "laegbaelte"
+                "name": "Læbælte",
+                "sorts": ["Hassel I", "Eg, stilk II", "Hvidtjørn", "Naur II", "Fjeldribs", "Fuglekirsebær", "Benved II", "Vildæbler II", "Syren I", "Gedeblad, dunet II"]
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -271,26 +265,19 @@
                         ]
                     ]
                 ]
-            },
-            "id": 0
+            }
         },
         {
             "type": "Feature",
             "properties": {
-                "SID": 1767089550,
-                "ACTIVITY_TYPE": "N NYK P",
-                "INFO1": 2022,
-                "INFO2": "",
-                "Area": 0,
-                "Length": 0,
-                "x": 0,
-                "y": 0,
+                "hektar": 0.450391,
                 "stroke": "#555555",
                 "stroke-width": 2,
                 "stroke-opacity": 1,
                 "fill": "#1d5520",
                 "fill-opacity": 0.5,
-                "name": "Centerskov"
+                "name": "Centerskov",
+                "sorts": ["Sitkagran I", "Lærk, Hybrid II", "Dunbirk", "Balsampoppel"]
             },
             "geometry": {
                 "type": "Polygon",
@@ -534,26 +521,19 @@
                         ]
                     ]
                 ]
-            },
-            "id": 1
+            }
         },
         {
             "type": "Feature",
             "properties": {
-                "SID": 1767089551,
-                "ACTIVITY_TYPE": "N NYK P",
-                "INFO1": 2022,
-                "INFO2": "",
-                "Area": 0,
-                "Length": 0,
-                "x": 0,
-                "y": 0,
+                "hektar": 0.261434,
                 "stroke": "#555555",
                 "stroke-width": 2,
                 "stroke-opacity": 1,
                 "fill": "#551819",
                 "fill-opacity": 0.5,
-                "Name": "Nabohensyn"
+                "name": "Lav skov",
+                "sorts": ["Fjeldribs", "Gedeblad, dunet II", "Snebær"]
             },
             "geometry": {
                 "type": "Polygon",
@@ -621,26 +601,19 @@
                         ]
                     ]
                 ]
-            },
-            "id": 2
+            }
         },
         {
             "type": "Feature",
             "properties": {
-                "SID": 1767089552,
-                "ACTIVITY_TYPE": "N NYK P",
-                "INFO1": 2022,
-                "INFO2": "",
-                "Area": 0,
-                "Length": 0,
-                "x": 0,
-                "y": 0,
+                "hektar": 0.246062,
                 "stroke": "#555555",
                 "stroke-width": 2,
                 "stroke-opacity": 1,
                 "fill": "#55094c",
                 "fill-opacity": 0.5,
-                "name": "sydvestskov"
+                "name": "Sydvest skov",
+                "sorts": ["Sitkagran I", "Lærk, Hybrid II", "Dunbirk", "Balsampoppel"]
             },
             "geometry": {
                 "type": "Polygon",
@@ -724,26 +697,19 @@
                         ]
                     ]
                 ]
-            },
-            "id": 3
+            }
         },
         {
             "type": "Feature",
             "properties": {
-                "SID": 1767089553,
-                "ACTIVITY_TYPE": "N NYK P",
-                "INFO1": 2022,
-                "INFO2": "",
-                "Area": 0,
-                "Length": 0,
-                "x": 0,
-                "y": 0,
+                "hektar": 0.444314,
                 "stroke": "#555555",
                 "stroke-width": 2,
                 "stroke-opacity": 1,
                 "fill": "#071f55",
                 "fill-opacity": 0.5,
-                "name": "sydskov"
+                "name": "Syd skov",
+                "sorts": ["Eg, stilk 2", "Birk, dun II", "Hassel II", "Fuglekirsebær", "Rødgran II"]
             },
             "geometry": {
                 "type": "Polygon",
@@ -795,8 +761,7 @@
                         ]
                     ]
                 ]
-            },
-            "id": 4
+            }
         }
     ]
 }

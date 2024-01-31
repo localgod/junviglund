@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     }
   },
   nitro: {
-    preset: "cloudflare_pages",
+    preset: 'cloudflare_pages',
     esbuild: {
       options: {
         target: 'esnext'
@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     }
   },
   css: [
-      '@/assets/css/main.css',
+    '@/assets/css/main.css'
   ],
   app: {
     head: {

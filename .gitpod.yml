@@ -10,7 +10,7 @@ tasks:
     env:
       NODE_OPTIONS: --openssl-legacy-provider
     before: |
-      npm install --location=global npm@latest @sanity/cli@latest typescript@latest
+      npm install --location=global npm@latest typescript@latest
       npm install    
     init: |
       npm run dev
