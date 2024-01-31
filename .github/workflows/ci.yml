@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [14]
+        node: [20]
 
     steps:
       - name: Checkout 🛎
@@ -42,8 +42,8 @@ jobs:
 
       - name: Install dependencies 👨🏻‍💻
         run: |
-          npm install -g npm@8.10.0
+          npm install -g npm@latest
           npm install
 
       - name: generate
-        run: npm run generate
+        run: npm run generate-prod
