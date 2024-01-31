@@ -8,6 +8,7 @@
     "generate-prod": "SANITY_DATASET=production nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue .",
     "lintfix": "eslint --ignore-path .gitignore --ext .ts,.js,.vue . --fix"
   },
   "devDependencies": {

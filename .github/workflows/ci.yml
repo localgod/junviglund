@@ -4,14 +4,12 @@ on:
   push:
     branches:
       - main
-      - master
   pull_request:
     branches:
       - main
-      - master
   repository_dispatch:
-      types:
-        - webhook
+    types:
+      - webhook
 
 jobs:
   ci:
@@ -45,5 +43,5 @@ jobs:
           npm install -g npm@latest
           npm install
 
-      - name: generate
-        run: npm run generate-prod
+      - name: lint
+        run: npm run lint
