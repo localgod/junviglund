@@ -29,7 +29,7 @@
   "dependencies": {
     "@nuxt/content": "^2.10.0",
     "@portabletext/vue": "^1.0.6",
-    "@sanity/client": "^6.10.0",
+    "@sanity/client": "^6.12.4",
     "@sanity/image-url": "^1.0.2",
     "@types/geojson": "^7946.0.14",
     "@types/leaflet": "^1.9.8"
