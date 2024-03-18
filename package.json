@@ -22,7 +22,7 @@
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.56.0",
     "eslint-plugin-vue": "^9.23.0",
-    "nuxt": "3.10.1",
+    "nuxt": "3.11.0",
     "nuxt3-leaflet": "^1.0.12",
     "typescript": "^5.3.3"
   },
