@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@nuxt/content": "^2.12.1",
-    "@portabletext/vue": "^1.0.10",
+    "@portabletext/vue": "^1.0.11",
     "@sanity/client": "^6.15.14",
     "@sanity/image-url": "^1.0.2",
     "@types/geojson": "^7946.0.14",
