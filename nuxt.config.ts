@@ -3,10 +3,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   telemetry: false,
   ssr: true,
-  modules: [
-    'nuxt3-leaflet',
-    '@nuxt/content'
-  ],
+  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxtjs/leaflet', '@nuxt/image'],
+  compatibilityDate: '2024-10-02',
   runtimeConfig: {
     public: {
       sanityProjectId: process.env.SANITY_PROJECT_ID,
