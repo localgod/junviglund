@@ -15,7 +15,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240925.0",
     "@eslint/js": "^9.11.1",
-    "@nuxt/devtools": "^1.5.1",
+    "@nuxt/devtools": "^1.5.2",
     "@nuxt/eslint": "^0.5.7",
     "@nuxt/types": "^2.18.1",
     "@types/leaflet": "^1.9.12",
