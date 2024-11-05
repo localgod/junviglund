@@ -1,6 +1,9 @@
 {
   "name": "junviglund-cms",
   "private": true,
+  "engines": {
+    "node": ">= 23"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
