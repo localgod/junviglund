@@ -32,7 +32,7 @@
                   />
                 </div>
                 <div class="modal-body">
-                  <img :src="builder.image(img).width(1200).fit('scale').url()" style="max-width: 100%;">
+                  <img :src="builder.image(img).width(1000).fit('scale').url()" style="max-width: 100%;">
                 </div>
               </div>
             </div>
