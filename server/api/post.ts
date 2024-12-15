@@ -19,13 +19,7 @@ class CMS {
   }
 }
 
-export default defineEventHandler(async (event) => {
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Max-Age': '86400',
-    'X-XSS-Protection': 1
-  }
-  setHeaders(event, headers)
+export default defineEventHandler(async () => {
   const cms = new CMS()
   return await cms.getPost()
 })
