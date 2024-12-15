@@ -3,7 +3,7 @@ import { createClient, SanityClient } from '@sanity/client'
 class CMS {
   client: SanityClient
 
-  constructor () {
+  constructor() {
     const runtimeConfig = useRuntimeConfig()
     this.client = createClient({
       projectId: runtimeConfig.public.sanityProjectId,
@@ -14,12 +14,21 @@ class CMS {
     })
   }
 
-  async getPost () {
+  async getPost() {
     return await this.client.fetch('*[_type == "post"]')
   }
 }
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  const headers = {
+    'Access-Control-Allow-Origin': 'Same-Origin',
+    'crossOriginResourcePolicy': 'same-origin',
+    'crossOriginOpenerPolicy': 'same-origin',
+    'crossOriginEmbedderPolicy': 'require-corp',
+    'contentSecurityPolicy': "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests",
+    'X-XSS-Protection': 1
+  }
+  setHeaders(event, headers)
   const cms = new CMS()
   return await cms.getPost()
 })
