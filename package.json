@@ -36,7 +36,7 @@
     "@portabletext/vue": "^1.0.11",
     "@sanity/client": "^6.24.1",
     "@sanity/image-url": "^1.1.0",
-    "@types/geojson": "^7946.0.14",
+    "@types/geojson": "^7946.0.15",
     "nuxt": "3.14.1592"
   },
   "overrides": {
