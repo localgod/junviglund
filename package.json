@@ -32,7 +32,7 @@
   "dependencies": {
     "@nuxt/content": "^2.13.4",
     "@nuxt/image": "^1.8.1",
-    "@nuxtjs/leaflet": "^1.2.3",
+    "@nuxtjs/leaflet": "^1.2.6",
     "@portabletext/vue": "^1.0.11",
     "@sanity/client": "^6.24.1",
     "@sanity/image-url": "^1.1.0",
