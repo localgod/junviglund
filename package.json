@@ -33,7 +33,7 @@
     "@nuxt/content": "^3.1.1",
     "@nuxt/image": "^1.9.0",
     "@nuxtjs/leaflet": "^1.2.6",
-    "@portabletext/vue": "^1.0.11",
+    "@portabletext/vue": "^1.0.12",
     "@sanity/client": "^6.27.2",
     "@sanity/image-url": "^1.1.0",
     "@types/geojson": "^7946.0.16",
