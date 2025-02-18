@@ -27,7 +27,7 @@
     "eslint-plugin-vue": "^9.32.0",
     "globals": "^15.15.0",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.23.0"
+    "typescript-eslint": "^8.24.1"
   },
   "dependencies": {
     "@nuxt/content": "^3.1.1",
