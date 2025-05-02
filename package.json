@@ -30,7 +30,7 @@
     "typescript-eslint": "^8.31.0"
   },
   "dependencies": {
-    "@nuxt/content": "^3.4.0",
+    "@nuxt/content": "^3.5.1",
     "@nuxt/image": "^1.10.0",
     "@nuxtjs/leaflet": "^1.2.6",
     "@portabletext/vue": "^1.0.12",
