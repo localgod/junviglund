@@ -18,7 +18,9 @@
 		"vscode": {
 			"extensions": [
 				"DavidAnson.vscode-markdownlint",
-				"usernamehw.errorlens"
+				"usernamehw.errorlens",
+				"randomfractalsinc.geo-data-viewer",
+                "Vue.volar"
 			]
 		}
 	}
