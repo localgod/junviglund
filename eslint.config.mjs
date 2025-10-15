@@ -5,6 +5,19 @@ import pluginVue from "eslint-plugin-vue";
 
 
 export default [
+  // Ignore build outputs and dependencies
+  {
+    ignores: [
+      ".nuxt/**",
+      ".output/**",
+      "dist/**",
+      "node_modules/**",
+      ".cache/**",
+      ".data/**",
+      "**/*.d.ts",
+      "!types/**/*.d.ts"
+    ]
+  },
   {files: ["**/*.{js,mjs,ts,vue}"]},
   {languageOptions: { globals: globals.browser }},
   pluginJs.configs.recommended,
