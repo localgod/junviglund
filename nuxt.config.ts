@@ -1,10 +1,32 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // Nuxt 4 uses app/ as the default srcDir
+  // This is automatically detected, no explicit configuration needed
+  
   devtools: { enabled: true },
   telemetry: false,
   ssr: true,
-  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxtjs/leaflet', '@nuxt/image'],
+  modules: ['@nuxt/eslint', '@nuxtjs/leaflet', '@nuxt/image'],
   compatibilityDate: '2024-10-02',
+  
+  // Gitpod dev server configuration
+  vite: {
+    server: {
+      hmr: {
+        clientPort: 443,
+        protocol: 'wss'
+      },
+      allowedHosts: [
+        '.gitpod.dev',
+        '.gitpod.io'
+      ]
+    }
+  },
+  
+  devServer: {
+    host: '0.0.0.0',
+    port: 3000
+  },
   runtimeConfig: {
     public: {
       sanityProjectId: process.env.SANITY_PROJECT_ID,
@@ -20,6 +42,11 @@ export default defineNuxtConfig({
       options: {
         target: 'esnext'
       }
+    },
+    rollupConfig: {
+      external: [
+        /leaflet\/dist\/images/
+      ]
     }
   },
   css: [

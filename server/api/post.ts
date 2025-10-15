@@ -1,25 +1,14 @@
-import { createClient, SanityClient } from '@sanity/client'
+import type { Post } from '~/types/sanity'
 
-class CMS {
-  client: SanityClient
-
-  constructor() {
-    const runtimeConfig = useRuntimeConfig()
-    this.client = createClient({
-      projectId: runtimeConfig.public.sanityProjectId,
-      dataset: runtimeConfig.public.sanityDataset,
-      useCdn: true, // set to `false` to bypass the edge cache
-      apiVersion: new Date().toISOString().split('T')[0] // use current date (YYYY-MM-DD) to target the latest API version
-      // token: process.env.SANITY_SECRET_TOKEN // Only if you want to update content with the client
+export default defineEventHandler(async (): Promise<Post[]> => {
+  try {
+    const client = getSanityClient()
+    return await client.fetch<Post[]>('*[_type == "post"] | order(_createdAt desc)')
+  } catch (error) {
+    console.error('Failed to fetch posts from Sanity:', error)
+    throw createError({
+      statusCode: 500,
+      message: 'Failed to fetch blog posts'
     })
   }
-
-  async getPost() {
-    return await this.client.fetch('*[_type == "post"]')
-  }
-}
-
-export default defineEventHandler(async () => {
-  const cms = new CMS()
-  return await cms.getPost()
 })

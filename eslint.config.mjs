@@ -14,9 +14,9 @@ export default [
   {
     rules: {
       "@typescript-eslint/no-unused-expressions": "off",
-      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-explicit-any": "warn", // Warn instead of allowing
       "vue/multi-word-component-names": "off",
-      "no-undef": "off"
+      "no-undef": "off" // OK with TypeScript
     }
   }
 ];

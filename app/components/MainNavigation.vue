@@ -7,12 +7,21 @@
       <div id="navbarSupportedContent" class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <NuxtLink class="nav-link active" to="/">
+            <NuxtLink 
+              class="nav-link" 
+              to="/" 
+              active-class="active"
+              exact
+            >
               Hjem
             </NuxtLink>
           </li>
           <li class="nav-item">
-            <NuxtLink class="nav-link" to="/mapView">
+            <NuxtLink 
+              class="nav-link" 
+              to="/mapView"
+              active-class="active"
+            >
               Kort
             </NuxtLink>
           </li>

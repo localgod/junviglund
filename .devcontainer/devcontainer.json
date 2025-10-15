@@ -1,0 +1,25 @@
+{
+	"name": "Ona",
+	"build": {
+        "context": ".",
+        "dockerfile": "Dockerfile"
+    },
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker": {
+			"moby": false
+		},
+		"ghcr.io/devcontainers/features/node": {
+			"nodeGypDependencies": true,
+			"version": "lts",
+			"nvmVersion": "latest"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"DavidAnson.vscode-markdownlint",
+				"usernamehw.errorlens"
+			]
+		}
+	}
+}

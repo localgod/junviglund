@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question or Discussion
+    url: https://github.com/localgod/gitops/discussions
+    about: Ask questions or start discussions about the project
+  - name: Slidev Documentation
+    url: https://sli.dev/
+    about: Official Slidev documentation and guides
