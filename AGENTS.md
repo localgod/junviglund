@@ -31,6 +31,15 @@ SANITY_DATASET=production
 
 These are configured in `nuxt.config.ts` under `runtimeConfig.public`.
 
+### Dev Container
+
+The project includes a dev container configuration (`.devcontainer/`) with:
+- **Base Image:** Ubuntu 24.04
+- **Node.js:** LTS version via nvm
+- **Docker-in-Docker:** For containerized workflows
+- **GitHub CLI:** Pre-installed for PR creation and GitHub operations
+- **VS Code Extensions:** Markdown linting, error lens
+
 ### Development Server in Gitpod
 
 The Nuxt dev server is configured to work in Gitpod environments.
