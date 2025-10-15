@@ -1,6 +1,11 @@
 <template>
   <div class="card">
-    <img v-if="post?.mainImage" :src="builder.image(post.mainImage).width(1200).fit('crop').url()" class="" alt="...">
+    <img 
+      v-if="post?.mainImage" 
+      :src="builder.image(post.mainImage).width(1200).fit('crop').url()" 
+      class="card-img-top" 
+      :alt="post?.title || 'Blog post image'"
+    >
 
     <div class="card-body">
       <h5 class="card-title">
@@ -15,15 +20,26 @@
             <img
               :src="builder.image(img).width(190).height(190).fit('clip').url()"
               class="card-img-top"
-              alt="..."
+              :alt="`${post?.title || 'Blog post'} gallery image`"
               data-bs-toggle="modal"
               :data-bs-target="'#' + img._key"
+              role="button"
+              tabindex="0"
             >
           </div>
-          <div :id="img._key" class="modal fade" tabindex="-1" aria-labelledby="Picture" aria-hidden="true">
+          <div 
+            :id="img._key" 
+            class="modal fade" 
+            tabindex="-1" 
+            :aria-labelledby="`modal-title-${img._key}`"
+            aria-hidden="true"
+          >
             <div class="modal-dialog modal-fullscreen">
               <div class="modal-content">
                 <div class="modal-header">
+                  <h5 :id="`modal-title-${img._key}`" class="modal-title">
+                    {{ post?.title }}
+                  </h5>
                   <button
                     type="button"
                     class="btn-close"
@@ -32,7 +48,11 @@
                   />
                 </div>
                 <div class="modal-body">
-                  <img :src="builder.image(img).width(1000).fit('scale').url()" style="max-width: 100%;">
+                  <img 
+                    :src="builder.image(img).width(1000).fit('scale').url()" 
+                    class="modal-image"
+                    :alt="`${post?.title || 'Blog post'} full size image`"
+                  >
                 </div>
               </div>
             </div>
@@ -46,57 +66,7 @@
 <script setup lang="ts">
 import { PortableText } from '@portabletext/vue'
 import imageUrlBuilder from '@sanity/image-url'
-
-type Post = {
-    author: {
-        _ref: string;
-        _type: string;
-    };
-
-    images: {
-        _type: string;
-        _key: string;
-        asset: {
-            _ref: string;
-            _type: string;
-        }
-    }[];
-
-    categories: {
-        _ref: string;
-        _type: string;
-        _key: string;
-    }[];
-    _updatedAt: string;
-    slug: {
-        current: string;
-        _type: string;
-    };
-    title: string;
-    mainImage: {
-        _type: string;
-        asset: {
-            _ref: string;
-            _type: string;
-        };
-    };
-    _createdAt: string;
-    _rev: string;
-    _type: string;
-    _id: string;
-    body: {
-        _type: string;
-        style: string;
-        _key: string;
-        markDefs: any[]; // You can define a type for markDefs if needed
-        children: {
-            _key: string;
-            _type: string;
-            marks: any[]; // You can define a type for marks if needed
-            text: string;
-        }[];
-    }[];
-};
+import type { Post } from '~/types/sanity'
 
 const runtimeConfig = useRuntimeConfig()
 
@@ -106,9 +76,17 @@ const builder = imageUrlBuilder({
 })
 
 defineProps<{
-    post?: Post
+  post?: Post
 }>()
-
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.modal-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.card-img-top[role="button"] {
+  cursor: pointer;
+}
+</style>

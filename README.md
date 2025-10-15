@@ -16,7 +16,7 @@ The CMS functionality is deeply integrated with [Sanity](https://www.sanity.io/)
 
 ### 3. GeoJSON Storage
 
-Structured GeoJSON data is stored using `@nuxt/content`, enabling efficient handling and rendering of geospatial information.
+Structured GeoJSON data is stored as static JSON files in the `/content` directory and imported directly into components for efficient handling and rendering of geospatial information.
 
 ### 4. Interactive Maps with Leaflet
 
@@ -47,3 +47,7 @@ The project provides essential scripts for development, building, and linting. K
 1. Install dependencies: `npm install`
 2. Run the development server: `npm run dev`
 3. Build for production: `npm run build`
+
+## Project Structure
+
+This project uses **Nuxt 4's new directory structure** with `app/` as the source directory. See [MIGRATION_NUXT4.md](MIGRATION_NUXT4.md) for details on the folder structure and migration notes.

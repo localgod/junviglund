@@ -5,6 +5,19 @@ import pluginVue from "eslint-plugin-vue";
 
 
 export default [
+  // Ignore build outputs and dependencies
+  {
+    ignores: [
+      ".nuxt/**",
+      ".output/**",
+      "dist/**",
+      "node_modules/**",
+      ".cache/**",
+      ".data/**",
+      "**/*.d.ts",
+      "!types/**/*.d.ts"
+    ]
+  },
   {files: ["**/*.{js,mjs,ts,vue}"]},
   {languageOptions: { globals: globals.browser }},
   pluginJs.configs.recommended,
@@ -14,9 +27,9 @@ export default [
   {
     rules: {
       "@typescript-eslint/no-unused-expressions": "off",
-      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-explicit-any": "warn", // Warn instead of allowing
       "vue/multi-word-component-names": "off",
-      "no-undef": "off"
+      "no-undef": "off" // OK with TypeScript
     }
   }
 ];
