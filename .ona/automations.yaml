@@ -1,0 +1,8 @@
+services:
+    database:
+        name: devserver
+        description: Nuxt Dev Server
+        triggeredBy:
+            - postEnvironmentStart
+        commands:
+            start: 'npm run dev'
