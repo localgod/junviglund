@@ -5,6 +5,7 @@ This document provides context and instructions for AI agents working on the Jun
 ## Project Overview
 
 This is a **Nuxt 4** personal webpage project that combines:
+
 - Blog content from **Sanity CMS**
 - Interactive geospatial mapping with **Leaflet**
 - GeoJSON data stored via **@nuxt/content**
@@ -34,6 +35,7 @@ These are configured in `nuxt.config.ts` under `runtimeConfig.public`.
 ### Dev Container
 
 The project includes a dev container configuration (`.devcontainer/`) with:
+
 - **Base Image:** Ubuntu 24.04
 - **Node.js:** LTS version via nvm
 - **Docker-in-Docker:** For containerized workflows
@@ -45,6 +47,7 @@ The project includes a dev container configuration (`.devcontainer/`) with:
 The Nuxt dev server is configured to work in Gitpod environments.
 
 **Configuration in `nuxt.config.ts`:**
+
 ```typescript
 vite: {
   server: {
@@ -65,6 +68,7 @@ devServer: {
 ```
 
 **Start the dev server:**
+
 ```bash
 npm run dev
 ```
@@ -72,13 +76,13 @@ npm run dev
 The server will be available at the Gitpod preview URL (port 3000).
 
 **Note:** The configuration ensures:
+
 - Server binds to `0.0.0.0` (accessible externally)
 - HMR (Hot Module Replacement) works over WebSocket Secure (wss)
 - Gitpod domains (`.gitpod.dev` and `.gitpod.io`) are in the allowed hosts list
 - Gitpod's proxy handles the connection properly
 
 **Important:** After changing `nuxt.config.ts`, you must restart the dev server for changes to take effect.
-
 
 ## Branch Protection and Pull Request Workflow
 
@@ -94,22 +98,26 @@ The server will be available at the Gitpod preview URL (port 3000).
 ### Workflow for Changes
 
 1. **Create a feature branch:**
+
    ```bash
    git checkout -b feature/descriptive-name
    ```
 
 2. **Make changes and commit:**
+
    ```bash
    git add .
    git commit -m "Description of changes"
    ```
 
 3. **Push to the feature branch:**
+
    ```bash
    git push origin feature/descriptive-name
    ```
 
 4. **Create a Pull Request:**
+
    ```bash
    gh pr create --title "Title" --body "Description"
    ```
@@ -121,6 +129,7 @@ The server will be available at the Gitpod preview URL (port 3000).
 ### For Repository Owners
 
 If you need to make quick changes without PR workflow:
+
 1. Temporarily disable branch protection in repository settings
 2. Make and push changes
 3. Re-enable branch protection
@@ -131,7 +140,7 @@ Or use the PR workflow even for your own changes (recommended).
 
 **This project uses Nuxt 4's new directory structure** with `app/` as the default srcDir.
 
-```
+```text
 /workspaces/junviglund/
 ├── app/                       # Application source directory (srcDir)
 │   ├── app.vue               # Root application component
@@ -208,18 +217,21 @@ npm run mdlint
 ## Data Sources
 
 ### Sanity CMS
+
 - **Purpose:** Blog posts with rich text and images
 - **API Route:** `/api/post`
 - **Client:** `@sanity/client` initialized in `server/api/post.ts`
 - **Image Optimization:** `@sanity/image-url` builder
 
 ### Local GeoJSON Content
+
 - **Location:** `/content/*.json` (root directory, not in `app/`)
 - **Access:** Direct JSON imports using relative paths (e.g., `import data from '../../content/planting.json'`)
 - **Format:** Standard GeoJSON FeatureCollections with custom properties
 - **Note:** We use direct JSON imports (not `@nuxt/content` module) for simplicity and better compatibility with Nuxt 4
 
 ### External API
+
 - **Dataforsyningen:** Danish cadastral data (property boundaries)
 - **Proxy Route:** `/api/dataforsyningen/jordstykker`
 - **Parameters:** `ejerlavkode` (number), `matrikelnr` (string)
@@ -227,21 +239,25 @@ npm run mdlint
 ## Code Patterns and Conventions
 
 ### TypeScript
+
 - **Strict typing:** Use explicit types, avoid `any`
 - **Shared types:** Located in `/types` directory
 - **Composition API:** All components use `<script setup lang="ts">`
 
 ### Vue Components
+
 - **Naming:** PascalCase for components, kebab-case for pages
 - **Props:** Use `defineProps<Type>()` with TypeScript
 - **Composables:** Use Nuxt auto-imports (`useFetch`, `useRuntimeConfig`, etc.)
 
 ### API Routes
+
 - **Pattern:** Use `defineEventHandler` for all routes
 - **Error Handling:** Use `createError()` for HTTP errors
 - **Validation:** Always validate query parameters and inputs
 
 ### Data Fetching
+
 ```typescript
 // Client-side: Use useFetch with error handling
 const { data, error, pending } = await useFetch<Type>('/api/endpoint')
@@ -251,7 +267,9 @@ const data = await $fetch('https://external-api.com/data')
 ```
 
 ### GeoJSON Structure
+
 All GeoJSON files follow this pattern:
+
 ```json
 {
   "type": "FeatureCollection",
@@ -286,17 +304,20 @@ All GeoJSON files follow this pattern:
 ## Common Issues and Solutions
 
 ### Issue: "Blocked request" error in Gitpod
+
 **Symptom:** Browser shows "This host is not allowed" when accessing Gitpod preview URL.
 
 **Cause:** Vite's host checking blocks the Gitpod domain by default.
 
 **Solution:** The `nuxt.config.ts` includes proper Gitpod configuration:
+
 - `devServer.host: '0.0.0.0'` - Binds to all interfaces
 - `vite.server.hmr` - Configures WebSocket for HMR
 
 If you still see this error, restart the dev server.
 
 ### Issue: "queryContent is not defined" error (RESOLVED)
+
 **Symptom:** Error when accessing pages that use `queryContent`.
 
 **Cause:** Nuxt Content's `queryContent` auto-import not working with Nuxt 4 structure.
@@ -304,6 +325,7 @@ If you still see this error, restart the dev server.
 **Solution:** Changed to direct JSON imports instead of using Nuxt Content's query API.
 
 The GeoJSON files are now imported directly in `mapView.vue` using relative paths:
+
 ```typescript
 import plantingData from '../../content/planting.json'
 import buildingsData from '../../content/buildings.json'
@@ -315,15 +337,19 @@ From `app/pages/mapView.vue`, we go up two directories (`../../`) to reach the r
 This is simpler and more reliable for static JSON files.
 
 ### Issue: "Cannot find module" errors
+
 **Solution:** Run `npm install` and `nuxt prepare` to regenerate type definitions.
 
 ### Issue: Sanity images not loading
+
 **Solution:** Verify `SANITY_PROJECT_ID` and `SANITY_DATASET` environment variables are set.
 
 ### Issue: Map not rendering
+
 **Solution:** Check that all GeoJSON files in `/content` are valid and properly formatted.
 
 ### Issue: TypeScript errors in components
+
 **Solution:** Ensure shared types are imported from `/types` directory.
 
 ## Resources
@@ -336,19 +362,22 @@ This is simpler and more reliable for static JSON files.
 
 ## Repository Information
 
-- **Repository:** https://github.com/localgod/junviglund
+- **Repository:** <https://github.com/localgod/junviglund>
 - **Owner:** localgod
 
 ## Deployment
 
 ### Cloudflare Pages
+
 - **Production:** Automatic deployment on merge to `main` branch
 - **Preview:** Automatic deployment on pull requests
 - **Build Command:** `npm run generate`
 - **Output Directory:** `.output/public`
 
 ### CI/CD Pipeline
+
 GitHub Actions runs:
+
 1. ESLint checks
 2. Build verification
 3. Deployment to Cloudflare Pages
@@ -358,4 +387,3 @@ All checks must pass before merging to `main`.
 ## Last Updated
 
 2025-10-15
-
