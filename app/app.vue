@@ -1,6 +1,6 @@
 <template>
-  <NuxtLayout>
+  <UApp>
     <MainNavigation />
     <NuxtPage />
-  </NuxtLayout>
+  </UApp>
 </template>

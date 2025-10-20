@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   telemetry: false,
   ssr: true,
-  modules: ['@nuxt/eslint', '@nuxtjs/leaflet', '@nuxt/image'],
+  modules: ['@nuxt/ui', '@nuxt/eslint', '@nuxtjs/leaflet', '@nuxt/image'],
   compatibilityDate: '2024-10-02',
   
   // Gitpod dev server configuration
@@ -54,18 +54,9 @@ export default defineNuxtConfig({
     }
   },
   css: [
-    '@/assets/css/main.css'
+    '~/assets/css/main.css'
   ],
-  app: {
-    head: {
-      link: [
-        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' }
-      ],
-      script: [
-        { src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js', defer: true }
-      ]
-    }
-  },
+  
   routeRules: {
     '/api/**': { cors: true },
   }
