@@ -28,8 +28,10 @@ export default defineNuxtConfig({
     port: 3000
   },
   runtimeConfig: {
+    public: {
       sanityProjectId: process.env.SANITY_PROJECT_ID,
       sanityDataset: process.env.SANITY_DATASET
+    }
   },
   nitro: {
     preset: 'cloudflare_pages',
