@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   telemetry: false,
   ssr: true,
-  modules: ['@nuxt/eslint', '@nuxtjs/leaflet', '@nuxt/image'],
+  modules: ['@nuxt/ui', '@nuxt/eslint', '@nuxtjs/leaflet', '@nuxt/image'],
   compatibilityDate: '2024-10-02',
   
   // Gitpod dev server configuration
