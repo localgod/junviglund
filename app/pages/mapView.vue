@@ -1,9 +1,16 @@
 <template>
-  <div class="container">
-    <div v-if="hasError" class="alert alert-warning" role="alert">
-      Some map data could not be loaded. The map may be incomplete.
-    </div>
-    <div class="map-container">
+  <UContainer class="py-8">
+    <UAlert
+      v-if="hasError"
+      color="amber"
+      variant="soft"
+      title="Warning"
+      description="Some map data could not be loaded. The map may be incomplete."
+      icon="i-heroicons-exclamation-triangle"
+      class="mb-4"
+    />
+    
+    <div class="map-container rounded-lg overflow-hidden shadow-lg">
       <!-- https://github.com/Gugustinette/Nuxt-Leaflet -->
       <LMap :zoom="zoom" :center="center" :use-global-leaflet="false">
         <LTileLayer 
@@ -19,7 +26,7 @@
         />
       </LMap>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

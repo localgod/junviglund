@@ -1,72 +1,66 @@
 <template>
-  <div class="card">
+  <UCard>
+    <template #header>
+      <h2 class="text-2xl font-bold">
+        {{ post?.title }}
+      </h2>
+    </template>
+
     <img 
       v-if="post?.mainImage" 
       :src="builder.image(post.mainImage).width(1200).fit('crop').url()" 
-      class="card-img-top" 
+      class="w-full rounded-lg mb-6" 
       :alt="post?.title || 'Blog post image'"
     >
 
-    <div class="card-body">
-      <h5 class="card-title">
-        {{ post?.title }}
-      </h5>
-      <p class="card-text">
-        <PortableText :value="post?.body || []" />
-      </p>
-      <div v-if="post?.images" class="row row-cols-1 row-cols-md-6 g-4">
-        <div v-for="img in post.images" :key="img._key" class="col">
-          <div class="card">
-            <img
-              :src="builder.image(img).width(190).height(190).fit('clip').url()"
-              class="card-img-top"
-              :alt="`${post?.title || 'Blog post'} gallery image`"
-              data-bs-toggle="modal"
-              :data-bs-target="'#' + img._key"
-              role="button"
-              tabindex="0"
-            >
-          </div>
-          <div 
-            :id="img._key" 
-            class="modal fade" 
-            tabindex="-1" 
-            :aria-labelledby="`modal-title-${img._key}`"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-fullscreen">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 :id="`modal-title-${img._key}`" class="modal-title">
-                    {{ post?.title }}
-                  </h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  />
-                </div>
-                <div class="modal-body">
-                  <img 
-                    :src="builder.image(img).width(1000).fit('scale').url()" 
-                    class="modal-image"
-                    :alt="`${post?.title || 'Blog post'} full size image`"
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="prose prose-gray dark:prose-invert max-w-none mb-6">
+      <PortableText :value="post?.body || []" />
+    </div>
+
+    <div v-if="post?.images" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <div v-for="img in post.images" :key="img._key">
+        <img
+          :src="builder.image(img).width(190).height(190).fit('clip').url()"
+          class="w-full h-auto rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
+          :alt="`${post?.title || 'Blog post'} gallery image`"
+          @click="openModal(img)"
+        >
       </div>
     </div>
-  </div>
+
+    <UModal v-model="isModalOpen" fullscreen>
+      <UCard>
+        <template #header>
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-semibold">
+              {{ post?.title }}
+            </h3>
+            <UButton
+              color="gray"
+              variant="ghost"
+              icon="i-heroicons-x-mark-20-solid"
+              @click="isModalOpen = false"
+            />
+          </div>
+        </template>
+
+        <div class="flex items-center justify-center p-4">
+          <img 
+            v-if="selectedImage"
+            :src="builder.image(selectedImage).width(1600).fit('scale').url()" 
+            class="max-w-full max-h-[80vh] object-contain"
+            :alt="`${post?.title || 'Blog post'} full size image`"
+          >
+        </div>
+      </UCard>
+    </UModal>
+  </UCard>
 </template>
 
 <script setup lang="ts">
 import { PortableText } from '@portabletext/vue'
 import imageUrlBuilder from '@sanity/image-url'
-import type { Post } from '~/types/sanity'
+import type { Post, SanityImage } from '~/types/sanity'
 
 const runtimeConfig = useRuntimeConfig()
 
@@ -75,18 +69,17 @@ const builder = imageUrlBuilder({
   dataset: runtimeConfig.public.sanityDataset
 })
 
+const isModalOpen = ref(false)
+const selectedImage = ref<SanityImage | null>(null)
+
+const openModal = (img: SanityImage) => {
+  selectedImage.value = img
+  isModalOpen.value = true
+}
+
 defineProps<{
   post?: Post
 }>()
 </script>
 
-<style lang="css" scoped>
-.modal-image {
-  max-width: 100%;
-  height: auto;
-}
 
-.card-img-top[role="button"] {
-  cursor: pointer;
-}
-</style>

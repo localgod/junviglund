@@ -1,15 +1,22 @@
 <template>
-  <div class="container">
-    <h1>Junviglund</h1>
-    <div v-if="error" class="alert alert-danger" role="alert">
-      Failed to load blog posts. Please try again later.
+  <UContainer class="py-8">
+    <h1 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+      Junviglund
+    </h1>
+    
+    <UAlert
+      v-if="error"
+      color="red"
+      variant="soft"
+      title="Error loading blog posts"
+      description="Failed to load blog posts. Please try again later."
+      icon="i-heroicons-exclamation-triangle"
+    />
+    
+    <div v-else-if="posts" class="space-y-8">
+      <BlogPost v-for="p in posts" :key="p._id" :post="p" />
     </div>
-    <div v-else-if="posts" class="row">
-      <div v-for="p in posts" :key="p._id" class="col-sm-12">
-        <BlogPost :post="p" />
-      </div>
-    </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

@@ -1,6 +1,8 @@
 <template>
-  <NuxtLayout>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <MainNavigation />
-    <NuxtPage />
-  </NuxtLayout>
+    <main>
+      <NuxtPage />
+    </main>
+  </div>
 </template>
