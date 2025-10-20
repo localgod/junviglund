@@ -1,4 +1,4 @@
-import type { MapFeatureCollection } from '~/types/geojson'
+import type { MapFeatureCollection } from '../../../types/geojson'
 
 class Jordstykker {
   private baseUrl = 'https://api.dataforsyningen.dk/jordstykker'
