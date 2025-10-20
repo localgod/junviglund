@@ -28,6 +28,10 @@ export default defineNuxtConfig({
     port: 3000
   },
   runtimeConfig: {
+    // Server-side access
+    sanityProjectId: process.env.SANITY_PROJECT_ID,
+    sanityDataset: process.env.SANITY_DATASET,
+    // Client-side access (needed for image URL builder)
     public: {
       sanityProjectId: process.env.SANITY_PROJECT_ID,
       sanityDataset: process.env.SANITY_DATASET
