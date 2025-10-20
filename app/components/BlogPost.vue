@@ -31,8 +31,12 @@
     </UCard>
 
     <Teleport to="body">
-      <UModal v-if="isModalOpen" v-model="isModalOpen" fullscreen>
-        <UCard>
+      <div
+        v-if="isModalOpen"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
+        @click="isModalOpen = false"
+      >
+        <UCard class="max-w-7xl w-full max-h-[95vh] overflow-auto" @click.stop>
           <template #header>
             <div class="flex items-center justify-between">
               <h3 class="text-xl font-semibold">
@@ -56,7 +60,7 @@
             >
           </div>
         </UCard>
-      </UModal>
+      </div>
     </Teleport>
   </div>
 </template>
