@@ -31,7 +31,7 @@
     </UCard>
 
     <Teleport to="body">
-      <UModal v-model="isModalOpen" fullscreen>
+      <UModal v-if="isModalOpen" v-model="isModalOpen" fullscreen>
         <UCard>
           <template #header>
             <div class="flex items-center justify-between">
