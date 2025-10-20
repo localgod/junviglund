@@ -1,16 +1,30 @@
+<script setup lang="ts">
+import type { NavigationMenuItem } from '@nuxt/ui'
+
+const route = useRoute()
+
+const items = computed<NavigationMenuItem[]>(() => [
+  {
+    label: 'Hjem',
+    to: '/',
+    active: route.path === '/'
+  },
+  {
+    label: 'Kort',
+    to: '/mapView',
+    active: route.path === '/mapView'
+  }
+])
+</script>
+
 <template>
   <UHeader>
-    <template #left>
+    <template #title>
       <NuxtLink to="/" class="text-2xl font-bold">
         Junviglund
       </NuxtLink>
     </template>
 
-    <template #right>
-      <UHeaderLinks>
-        <UHeaderLink to="/" label="Hjem" exact />
-        <UHeaderLink to="/mapView" label="Kort" />
-      </UHeaderLinks>
-    </template>
+    <UNavigationMenu :items="items" />
   </UHeader>
 </template>
