@@ -10,13 +10,13 @@ export function getSanityClient(): SanityClient {
   if (!client) {
     const runtimeConfig = useRuntimeConfig()
     
-    if (!runtimeConfig.public.sanityProjectId || !runtimeConfig.public.sanityDataset) {
+    if (!runtimeConfig.sanityProjectId || !runtimeConfig.sanityDataset) {
       throw new Error('Missing Sanity configuration: SANITY_PROJECT_ID and SANITY_DATASET must be set')
     }
     
     client = createClient({
-      projectId: runtimeConfig.public.sanityProjectId,
-      dataset: runtimeConfig.public.sanityDataset,
+      projectId: runtimeConfig.sanityProjectId,
+      dataset: runtimeConfig.sanityDataset,
       useCdn: true,
       apiVersion: '2024-10-02' // Use fixed date from nuxt.config compatibilityDate
     })

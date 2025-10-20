@@ -1,4 +1,4 @@
-import type { Post } from '~/types/sanity'
+import type { Post } from '../../types/sanity'
 
 export default defineEventHandler(async (): Promise<Post[]> => {
   try {
