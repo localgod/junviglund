@@ -38,7 +38,7 @@
     "@sanity/client": "^7.14.0",
     "@sanity/image-url": "^2.0.3",
     "@types/geojson": "^7946.0.16",
-    "nuxt": "^4.2.2"
+    "nuxt": "^4.3.0"
   },
   "overrides": {
     "@parcel/watcher": "2.1.0"
