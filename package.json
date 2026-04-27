@@ -23,7 +23,7 @@
     "@types/leaflet": "^1.9.21",
     "@types/node": "^25.6.0",
     "eslint": "^10.2.1",
-    "eslint-plugin-vue": "^10.7.0",
+    "eslint-plugin-vue": "^10.9.0",
     "globals": "^17.5.0",
     "markdownlint-cli": "^0.47.0",
     "typescript": "^6.0.3",
