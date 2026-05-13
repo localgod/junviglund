@@ -27,7 +27,7 @@
     "globals": "^17.6.0",
     "markdownlint-cli": "^0.47.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.1"
+    "typescript-eslint": "^8.59.2"
   },
   "dependencies": {
     "@nuxt/content": "^3.13.0",
