@@ -15,7 +15,7 @@
     "mdlint": "markdownlint '**/*.md' --ignore node_modules --disable MD033 MD013 MD041"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20260804.1",
+    "@cloudflare/workers-types": "^5.20260820.1",
     "@eslint/js": "^10.0.1",
     "@nuxt/devtools": "^3.4.0",
     "@nuxt/eslint": "^1.17.0",
