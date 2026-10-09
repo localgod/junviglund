@@ -1,39 +1,11 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginVue from "eslint-plugin-vue";
+import withNuxt from './.nuxt/eslint.config.mjs'
 
-
-export default [
-  // Ignore build outputs and dependencies
-  {
-    ignores: [
-      ".nuxt/**",
-      ".output/**",
-      "dist/**",
-      "node_modules/**",
-      ".cache/**",
-      ".data/**",
-      "**/*.d.ts",
-      "!types/**/*.d.ts"
-    ]
-  },
-  {files: ["**/*.{js,mjs,ts,vue}"]},
-  {languageOptions: { globals: globals.browser }},
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...pluginVue.configs["flat/essential"],
-  {files: ["**/*.vue"], languageOptions: {parserOptions: {parser: tseslint.parser}}},
-  {
-    rules: {
-      "@typescript-eslint/no-unused-expressions": "off",
-      "@typescript-eslint/no-explicit-any": "warn", // Warn instead of allowing
-      "vue/multi-word-component-names": "off",
-      "no-undef": "off" // OK with TypeScript
-    }
+export default withNuxt({
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'warn',
+    'vue/multi-word-component-names': 'off'
   }
-];
-
+})
 
 
 

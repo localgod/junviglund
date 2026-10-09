@@ -1,18 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // Nuxt 4 uses app/ as the default srcDir
-  // This is automatically detected, no explicit configuration needed
-  
   devtools: { enabled: true },
   telemetry: false,
-  ssr: true,
   modules: ['@nuxt/ui', '@nuxt/eslint', '@nuxtjs/leaflet', '@nuxt/image'],
-  compatibilityDate: '2024-10-02',
-  
+  compatibilityDate: '2026-10-09',
+
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'da'
+      }
+    }
+  },
+
+  image: {
+    sanity: {
+      projectId: process.env.SANITY_PROJECT_ID || '',
+      dataset: process.env.SANITY_DATASET || 'production'
+    }
+  },
+
   // Gitpod dev server configuration
   vite: {
     server: {
-      hmr: {
+      ws: {
         clientPort: 443,
         protocol: 'wss'
       },
@@ -22,7 +33,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  
+
   devServer: {
     host: '0.0.0.0',
     port: 3000
@@ -30,12 +41,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Server-side access
     sanityProjectId: process.env.SANITY_PROJECT_ID,
-    sanityDataset: process.env.SANITY_DATASET,
-    // Client-side access (needed for image URL builder)
-    public: {
-      sanityProjectId: process.env.SANITY_PROJECT_ID,
-      sanityDataset: process.env.SANITY_DATASET
-    }
+    sanityDataset: process.env.SANITY_DATASET
   },
   nitro: {
     preset: 'cloudflare_pages',
@@ -56,8 +62,8 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/main.css'
   ],
-  
+
   routeRules: {
-    '/api/**': { cors: true },
+    '/api/**': { cors: true }
   }
 })
