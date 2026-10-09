@@ -18,13 +18,19 @@ const items = computed<NavigationMenuItem[]>(() => [
 </script>
 
 <template>
-  <UHeader>
-    <template #title>
-      <NuxtLink to="/" class="text-2xl font-bold">
-        Junviglund
-      </NuxtLink>
-    </template>
-
+  <UHeader
+    title="Junviglund"
+    to="/"
+    :ui="{ title: 'text-2xl' }"
+  >
     <UNavigationMenu :items="items" />
+
+    <template #body>
+      <UNavigationMenu
+        :items="items"
+        orientation="vertical"
+        class="w-full"
+      />
+    </template>
   </UHeader>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <article>
     <UCard class="mb-8">
       <template #header>
         <h2 class="text-2xl font-bold">
@@ -7,87 +7,84 @@
         </h2>
       </template>
 
-      <img 
-        v-if="post?.mainImage" 
-        :src="builder.image(post.mainImage).width(1200).fit('crop').url()" 
-        class="w-full rounded-lg mb-6" 
-        :alt="post?.title || 'Blog post image'"
-      >
+      <NuxtImg
+        v-if="post?.mainImage"
+        provider="sanity"
+        :src="post.mainImage.asset._ref"
+        width="1200"
+        sizes="100vw lg:1200px"
+        loading="lazy"
+        class="mb-6 w-full rounded-lg"
+        :alt="post?.title || 'Billede til blogindlæg'"
+      />
 
       <div class="prose dark:prose-invert max-w-none mb-6">
         <PortableText :value="post?.body || []" />
       </div>
 
-      <div v-if="post?.images" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        <div v-for="img in post.images" :key="img._key">
-          <img
-            :src="builder.image(img).width(190).height(190).fit('clip').url()"
-            class="w-full h-auto rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
-            :alt="`${post?.title || 'Blog post'} gallery image`"
-            @click="openModal(img)"
-          >
-        </div>
+      <div
+        v-if="post?.images?.length"
+        class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6"
+      >
+        <button
+          v-for="(img, index) in post.images"
+          :key="img._key"
+          type="button"
+          class="group cursor-pointer rounded-lg outline-primary/25 focus-visible:outline-3"
+          :aria-label="`Vis billede ${index + 1} i stort format`"
+          @click="openModal(img)"
+        >
+          <NuxtImg
+            provider="sanity"
+            :src="img.asset._ref"
+            width="190"
+            height="190"
+            fit="inside"
+            loading="lazy"
+            class="h-auto w-full rounded-lg transition-opacity group-hover:opacity-80 group-focus-visible:opacity-80 motion-reduce:transition-none"
+            :alt="`${post?.title || 'Blogindlæg'}, billede ${index + 1}`"
+          />
+        </button>
       </div>
     </UCard>
 
-    <Teleport to="body">
-      <div
-        v-if="isModalOpen"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
-        @click="isModalOpen = false"
-      >
-        <UCard class="max-w-7xl w-full max-h-[95vh] overflow-auto" @click.stop>
-          <template #header>
-            <div class="flex items-center justify-between">
-              <h3 class="text-xl font-semibold">
-                {{ post?.title }}
-              </h3>
-              <UButton
-                color="neutral"
-                variant="ghost"
-                icon="i-heroicons-x-mark-20-solid"
-                @click="isModalOpen = false"
-              />
-            </div>
-          </template>
-
-          <div class="flex items-center justify-center p-4">
-            <img 
-              v-if="selectedImage"
-              :src="builder.image(selectedImage).width(1600).fit('scale').url()" 
-              class="max-w-full max-h-[80vh] object-contain"
-              :alt="`${post?.title || 'Blog post'} full size image`"
-            >
-          </div>
-        </UCard>
-      </div>
-    </Teleport>
-  </div>
+    <UModal
+      v-model:open="isModalOpen"
+      :title="post?.title || 'Billedvisning'"
+      description="Forstørret billede fra galleriet"
+      :ui="{ content: 'max-w-7xl' }"
+    >
+      <template #body>
+        <div class="flex items-center justify-center">
+          <NuxtImg
+            v-if="selectedImage"
+            provider="sanity"
+            :src="selectedImage.asset._ref"
+            width="1600"
+            fit="inside"
+            class="max-h-[80dvh] max-w-full object-contain"
+            :alt="`${post?.title || 'Blogindlæg'} i stort format`"
+          />
+        </div>
+      </template>
+    </UModal>
+  </article>
 </template>
 
 <script setup lang="ts">
 import { PortableText } from '@portabletext/vue'
-import imageUrlBuilder from '@sanity/image-url'
-import type { Post, SanityImage } from '~/types/sanity'
+import type { Serialize } from 'nuxt/app'
+import type { Post, SanityImage } from '../../types/sanity'
 
 defineProps<{
-  post?: Post
+  post?: Serialize<Post>
 }>()
 
-const runtimeConfig = useRuntimeConfig()
-
-const builder = imageUrlBuilder({
-  projectId: runtimeConfig.public.sanityProjectId,
-  dataset: runtimeConfig.public.sanityDataset
-})
-
 const isModalOpen = ref(false)
-const selectedImage = ref<SanityImage | null>(null)
+const selectedImage = ref<Serialize<SanityImage> | null>(null)
 
-const openModal = (img: SanityImage) => {
+const openModal = (img: Serialize<SanityImage>) => {
   selectedImage.value = img
   isModalOpen.value = true
 }
 </script>
-
-

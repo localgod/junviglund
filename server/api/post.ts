@@ -1,3 +1,4 @@
+import { createError, defineEventHandler } from 'nuxt/server'
 import type { Post } from '../../types/sanity'
 
 export default defineEventHandler(async (): Promise<Post[]> => {
@@ -7,8 +8,8 @@ export default defineEventHandler(async (): Promise<Post[]> => {
   } catch (error) {
     console.error('Failed to fetch posts from Sanity:', error)
     throw createError({
-      statusCode: 500,
-      message: 'Failed to fetch blog posts'
+      status: 500,
+      statusText: 'Failed to fetch blog posts'
     })
   }
 })

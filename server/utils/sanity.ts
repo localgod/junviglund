@@ -1,4 +1,5 @@
 import { createClient, type SanityClient } from '@sanity/client'
+import { useRuntimeConfig } from 'nuxt/server'
 
 let client: SanityClient | null = null
 
