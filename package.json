@@ -24,7 +24,7 @@
     "eslint": "^10.12.0",
     "markdownlint-cli": "^0.49.1",
     "typescript": "^7.0.2",
-    "vue-tsc": "^3.3.12",
+    "vue-tsc": "^3.3.13",
     "wrangler": "^4.149.0"
   },
   "dependencies": {
