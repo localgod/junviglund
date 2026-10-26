@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.144",
-    "@nuxt/image": "^2.1.0",
+    "@nuxt/image": "^2.2.0",
     "@nuxt/ui": "^4.12.0",
     "@nuxtjs/leaflet": "^1.3.3",
     "@portabletext/vue": "^2.0.0",
