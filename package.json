@@ -35,7 +35,7 @@
     "@portabletext/vue": "^2.0.0",
     "@sanity/client": "^8.10.1",
     "@types/geojson": "^7946.0.16",
-    "nuxt": "^4.6.1"
+    "nuxt": "^4.6.2"
   },
   "overrides": {
     "@parcel/watcher": "2.6.0"
