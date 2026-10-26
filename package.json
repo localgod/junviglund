@@ -21,7 +21,7 @@
     "@nuxt/eslint": "^1.17.0",
     "@types/leaflet": "^1.9.22",
     "@types/node": "^26.6.5",
-    "eslint": "^10.12.0",
+    "eslint": "^10.13.0",
     "markdownlint-cli": "^0.49.1",
     "typescript": "^7.0.2",
     "vue-tsc": "^3.3.13",
