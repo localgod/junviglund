@@ -28,7 +28,7 @@
     "wrangler": "^4.156.0"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.149",
+    "@iconify-json/lucide": "^1.2.152",
     "@nuxt/image": "^2.2.1",
     "@nuxt/ui": "^4.12.0",
     "@nuxtjs/leaflet": "^1.3.3",
